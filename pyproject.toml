@@ -10,6 +10,13 @@ authors = [
     { name = "Sean Rooney", email = "sro@zurich.ibm.com" },
     { name = "Inge Vejsbjerg", email = "ingevejs@ie.ibm.com" },
 ]
+keywords = [
+    "ai risks",
+    "ai governance",
+    "related risks",
+    "risk mitigation",
+    "risk questionnaire",
+]
 description = "Risk Atlas Nexus provides tooling to help bring together disparate resources related to governance of foundation models. "
 readme = "README.md"
 requires-python = ">=3.11, <3.12"
@@ -67,4 +74,7 @@ combine_star = true
 lines_after_imports = 2
 
 [project.urls]
-repository = "https://github.com/IBM/risk-atlas-nexus"
+Homepage = "https://github.com/IBM/risk-atlas-nexus"
+Documentation = "https://ibm.github.io/risk-atlas-nexus/"
+Changelog = "https://github.com/IBM/risk-atlas-nexus/blob/main/CHANGELOG.md"
+Issues = "https://github.com/IBM/risk-atlas-nexus/issues"
