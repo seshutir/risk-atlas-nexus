@@ -12,10 +12,17 @@ authors = [
 ]
 keywords = [
     "ai risks",
+    "ai safety",
     "ai governance",
-    "related risks",
-    "risk mitigation",
-    "risk questionnaire",
+    "risk taxonomies",
+    "risk identification",
+    "risk detection",
+    "ai task identification",
+    "ai risk management",
+    "ai risk questionnaire",
+    "ai systems modelling",
+    "knowledge graph",
+    "chain of thought",
 ]
 description = "Risk Atlas Nexus provides tooling to help bring together disparate resources related to governance of foundation models. "
 readme = "README.md"
