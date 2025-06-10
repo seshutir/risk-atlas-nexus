@@ -39,7 +39,7 @@ class RiskDetector(ABC):
             self._taxonomy_id, None
         )
 
-        # Set prompt builder based on whether the cot examples are available.
+        # Set prompt builder based on whether the CoT examples are available.
         if self._examples is None:
             LOGGER.warning(
                 f"Warning: Chain of Thought (CoT) examples were not provided, or do not exist in the master for the taxonomy type: {self._taxonomy_id}. The API will use the Zero shot method. To improve the accuracy of risk identification, please provide CoT examples in `cot_examples` when calling this API. You may also consider raising an issue to permanently add these examples to the Risk Atlas Nexus master."
