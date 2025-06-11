@@ -1,5 +1,5 @@
 {
-    "ibm-risk-atlas-2": [
+    "ibm-risk-atlas": [
         {
             "Input": "In a medical chatbot, generative AI can be employed to create a triage system that assesses patients' symptoms and provides immediate, contextually relevant advice based on their medical history and current condition. The chatbot can analyze the patient's input, identify potential medical issues, and offer tailored recommendations or insights to the patient or healthcare provider. This can help streamline the triage process, ensuring that patients receive the appropriate level of care and attention, and ultimately improving patient outcomes.",
             "Output": [
