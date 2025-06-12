@@ -20,7 +20,7 @@ from jinja2 import Template
 class ZeroShotPromptBuilder:
 
     def __init__(self, prompt_template: str):
-        """_summary_
+        """A Zero shot prompt builder that creates prompts without using examples.
 
         Args:
             prompt_template (str): The string template that creates formatted
@@ -43,7 +43,7 @@ class ZeroShotPromptBuilder:
 class FewShotPromptBuilder:
 
     def __init__(self, prompt_template):
-        """_summary_
+        """A Few shot prompt builder that utilises Chain of Thought (CoT) examples to create better prompts.
 
         Args:
             prompt_template (str): The string template that creates formatted
@@ -52,7 +52,7 @@ class FewShotPromptBuilder:
         self.prompt_template = prompt_template
 
     def build(self, cot_examples: List[Any], **prompt_data) -> str:
-        """Build prompt using the prompt_data and prompt_template
+        """Build prompt using cot_examples, prompt_data and prompt_template
         Args:
             cot_examples (List[Any]): A List of Chain of Thought (CoT) examples
             prompt_data (Dict[str, Any]): properties with each key

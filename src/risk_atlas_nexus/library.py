@@ -39,7 +39,7 @@ from risk_atlas_nexus.blocks.prompt_templates import (
     AI_TASKS_TEMPLATE,
     QUESTIONNAIRE_COT_TEMPLATE,
 )
-from risk_atlas_nexus.blocks.risk_detector import AutoRiskDetector
+from risk_atlas_nexus.blocks.risk_detector import GenericRiskDetector
 from risk_atlas_nexus.blocks.risk_explorer import RiskExplorer
 from risk_atlas_nexus.blocks.risk_mapping import RiskMapper
 from risk_atlas_nexus.data import load_resource
@@ -485,6 +485,7 @@ class RiskAtlasNexus:
         usecases: List[str],
         inference_engine: InferenceEngine,
         taxonomy: Optional[str] = None,
+        cot_examples: Optional[Dict[str, List]] = None,
         max_risk: Optional[int] = None,
     ) -> List[List[Risk]]:
         """Identify potential risks from a usecase description
@@ -496,6 +497,11 @@ class RiskAtlasNexus:
                 An LLM inference engine to infer risks from the usecases.
             taxonomy (str, optional):
                 The string label for a taxonomy. Default to None.
+            cot_examples (Dict[str, List], optional):
+                The Chain of Thought (CoT) examples to use in the risk identification.
+                The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
+                Assign the ID of the taxonomy you wish to use as the key for CoT examples. Providing this value
+                will override the CoT examples present in the template master. Default to None.
             max_risk (int, optional):
                 The maximum number of risks to extract. Pass None to allow the inference engine to determine the number of risks. Defaults to None.
 
@@ -533,10 +539,11 @@ class RiskAtlasNexus:
             "Usecases must be a list of string.",
         )
 
-        risk_detector = AutoRiskDetector.create(
+        risk_detector = GenericRiskDetector(
             cls._ontology,
             inference_engine=inference_engine,
             taxonomy=taxonomy,
+            cot_examples=cot_examples,
             max_risk=max_risk,
         )
 

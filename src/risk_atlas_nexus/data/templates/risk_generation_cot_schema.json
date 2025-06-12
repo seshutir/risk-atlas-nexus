@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Risk Identification Chain of Thought (CoT) Schema",
+    "description": "A list of examples for risk identification categorized by taxonomy type.",
+    "type": "object",
+    "patternProperties": {
+        "^.*$": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Usecase": {
+                        "type": "string"
+                    },
+                    "Risks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "Usecase",
+                    "Risks"
+                ],
+                "additionalProperties": false
+            }
+        }
+    }
+}
