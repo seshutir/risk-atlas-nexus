@@ -52,6 +52,7 @@ dependencies = [
     "datasets",
     "openai>=1.0",
     "txtai",
+    "jsonschema",
     "isort",
     "pre-commit",
 ]
