@@ -6,11 +6,11 @@ Risk Atlas Nexus currently supports adding custom CoT templats for [Auto-assist 
 
 ## Auto-assist Risk Questionnaire
 
-The auto-assist feature utilizes few-shot examples defined in the file `risk_atlas_nexus/data/templates/risk_questionnaire_cot.json` to predict the output of the risk questionnaire. The usage example is shown in the notebook [autoassist_questionnaire.ipynb](../examples/notebooks/autoassist_questionnaire.ipynb)
+The auto-assist feature utilizes few-shot examples defined in the file `risk_atlas_nexus/data/templates/risk_questionnaire_cot.json` to predict the output of the risk questionnaire. The example of usage can be found in the notebook [autoassist_questionnaire.ipynb](../examples/notebooks/autoassist_questionnaire.ipynb)
 
 ### Customization
 
-To adapt this auto-assist functionality to custom risk questionnaires, users need to provide their own set of questions, example intents, and corresponding answers in a json file such as in [risk_questionnaire_cot.json](https://github.com/IBM/risk-atlas-nexus/blob/main/src/risk_atlas_nexus/data/templates/risk_questionnaire_cot.json). This will enable the LLM to learn from these few-shot examples and generate responses for unseen queries.
+To adapt this auto-assist functionality to custom risk questionnaire, users need to provide their own set of questions, example intents, and corresponding answers in a json file such as in [risk_questionnaire_cot.json](https://github.com/IBM/risk-atlas-nexus/blob/main/src/risk_atlas_nexus/data/templates/risk_questionnaire_cot.json). This will enable the LLM to learn from these few-shot examples and generate responses for unseen queries.
 
 There are two different template formats: the Zero-Shot method and the Few-Shot method.
 
