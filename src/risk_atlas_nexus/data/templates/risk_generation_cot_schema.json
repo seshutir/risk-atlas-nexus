@@ -1,34 +1,27 @@
 {
-    "anyOf": [
-        {
-            "type": "object",
-            "patternProperties": {
-                "^.*$": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "Input": {
-                                "type": "string"
-                            },
-                            "Output": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": [
-                            "Input",
-                            "Output"
-                        ],
-                        "additionalProperties": false
+    "type": "object",
+    "patternProperties": {
+        "^.*$": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Usecase": {
+                        "type": "string"
+                    },
+                    "Risks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
-                }
+                },
+                "required": [
+                    "Usecase",
+                    "Risks"
+                ],
+                "additionalProperties": false
             }
-        },
-        {
-            "type": "null"
         }
-    ]
+    }
 }
