@@ -498,7 +498,10 @@ class RiskAtlasNexus:
             taxonomy (str, optional):
                 The string label for a taxonomy. Default to None.
             cot_examples (Dict[str, List], optional):
-                The Chain of Thought (CoT) examples to use in the risk identification. The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json. Providing this value will override the CoT examples present in the template master. Default to None.
+                The Chain of Thought (CoT) examples to use in the risk identification.
+                The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
+                Assign the ID of the taxonomy you wish to use as the key for CoT examples. Providing this value
+                will override the CoT examples present in the template master. Default to None.
             max_risk (int, optional):
                 The maximum number of risks to extract. Pass None to allow the inference engine to determine the number of risks. Defaults to None.
 

@@ -13,13 +13,13 @@ from risk_atlas_nexus.blocks.prompt_builder import (
 )
 from risk_atlas_nexus.data import load_resource
 from risk_atlas_nexus.toolkit.logging import configure_logger
-from risk_atlas_nexus.toolkit.validate import validate
+from risk_atlas_nexus.toolkit.validator import validate
 
 
 LOGGER = configure_logger(__name__)
 
 
-RISK_IDENTIFICATION_EXAMPLES = load_resource("risk_generation_cot.json")
+RISK_IDENTIFICATION_COT = load_resource("risk_generation_cot.json")
 RISK_IDENTIFICATION_COT_SCHEMA = load_resource("risk_generation_cot_schema.json")
 
 
@@ -39,19 +39,19 @@ class RiskDetector(ABC):
         self._risks = self.get_risks_by_taxonomy_id(ontology, self._taxonomy_id)
 
         # Validate format of user-provided `cot_examples` if available
-        if cot_examples and (
+        if cot_examples is not None and (
             errors := validate(cot_examples, RISK_IDENTIFICATION_COT_SCHEMA)
         ):
             raise Exception(
                 f"The format of `cot_examples` is incorrect. {errors}. Please refer to the example template provided at src/risk_atlas_nexus/data/templates/risk_generation_cot.json"
             )
 
-        # First, check if the user has provided 'cot_examples'. If not,
-        # retrieve the default cot examples from the master. If no examples
-        # exist in the master, set it as None.
+        # For the given taxonomy type, check if the user has provided 'cot_examples'. If not,
+        # retrieve the default cot examples from the master. If no examples exist in the master,
+        # set it as None.
         self._examples = (
             cot_examples and cot_examples.get(self._taxonomy_id, None)
-        ) or RISK_IDENTIFICATION_EXAMPLES.get(self._taxonomy_id, None)
+        ) or RISK_IDENTIFICATION_COT.get(self._taxonomy_id, None)
 
         # Set prompt builder based on whether the CoT examples are available.
         if self._examples is None:
