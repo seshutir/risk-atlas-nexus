@@ -25,7 +25,7 @@ the project.
 The Risk Atlas Nexus ontology combines the AI risk view (taxonomies, risks, actions) with an AI model view (AI systems,
 AI models, model evaluations) into one schema. These are loaded into the system with LinkML, through yaml
 representations, stored in
-the [knowledge graph data folder](https://github.com/ibm/risk-atlas-nexus/src/risk_atlas_nexus/data/knowledge_graph/).
+the [knowledge graph data folder](https://github.com/IBM/risk-atlas-nexus/tree/main/src/risk_atlas_nexus/data/knowledge_graph/).
 
 ### How are mappings maintained between taxonomies?
 
