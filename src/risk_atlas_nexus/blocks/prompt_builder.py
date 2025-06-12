@@ -52,7 +52,7 @@ class FewShotPromptBuilder:
         self.prompt_template = prompt_template
 
     def build(self, cot_examples: List[Any], **prompt_data) -> str:
-        """Build prompt using the prompt_data and prompt_template
+        """Build prompt using cot_examples, prompt_data and prompt_template
         Args:
             cot_examples (List[Any]): A List of Chain of Thought (CoT) examples
             prompt_data (Dict[str, Any]): properties with each key

@@ -38,7 +38,7 @@ class RiskDetector(ABC):
         self._taxonomy_id = taxonomy if taxonomy else "ibm-risk-atlas"
         self._risks = self.get_risks_by_taxonomy_id(ontology, self._taxonomy_id)
 
-        # Validate user-provided `cot_examples` format if available.
+        # Validate format of user-provided `cot_examples` if available.
         if not validate(cot_examples, RISK_IDENTIFICATION_COT_SCHEMA):
             raise Exception(
                 f"The format of `cot_examples` is incorrect. Please refer to the example template provided at src/risk_atlas_nexus/data/templates/risk_generation_cot.json"
