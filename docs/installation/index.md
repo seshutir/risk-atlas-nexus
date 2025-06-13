@@ -1,12 +1,19 @@
 This project targets python version ">=3.11, <3.12". You can download specific versions of python here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
-Install the risk_atlas_nexus library
+**Note:** Replace `INFERENCE_LIB` with one of the LLM inference library [ollama, vllm, wml, rits] as explained [here](#install-for-inference-apis)
+
+To install the current release
+```
+pip install risk-atlas-nexus[INFERENCE_LIB]
+```
+
+To install the latest code
 ```
 git clone git@github.com:IBM/risk-atlas-nexus.git
 cd risk-atlas-nexus
 python -m venv vrisk-atlas-nexus
 source vrisk-atlas-nexus/bin/activate
-pip install -e .
+pip install -e ".[INFERENCE_LIB]"
 ```
 
 ### Install for inference APIs
