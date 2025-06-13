@@ -3,4 +3,4 @@
     - [Risk identification](../examples/notebooks/risk_identification.ipynb) Uncover risks related to your usecase
     - [Auto assist questionnaire](../examples/notebooks/autoassist_questionnaire.ipynb) Auto-fill questionnaire using Chain of Thought or Few-Shot Examples
     - [AI Tasks identification](../examples/notebooks/ai_tasks_identification.ipynb) Uncover AI tasks related to your usecase
-    - [AI Domain identification](docs/examples/notebooks/domain_identification.ipynb) Uncover AI domain from your usecase
+    - [AI Domain identification](../examples/notebooks/domain_identification.ipynb) Uncover AI domain from your usecase
