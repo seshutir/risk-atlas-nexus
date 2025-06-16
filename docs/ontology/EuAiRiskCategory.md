@@ -8,10 +8,11 @@ URI: [EuAiRiskCategory](EuAiRiskCategory.md)
 
 | Value | Meaning | Description |
 | --- | --- | --- |
-| MINIMAL | None |  |
-| LIMITED | None |  |
-| HIGH | None |  |
-| UNACCEPTABLE | None |  |
+| EXCLUDED | "Excluded" |  |
+| PROHIBITED | "Prohibited" |  |
+| HIGH_RISK_EXCEPTION | "High-Risk Exception" |  |
+| HIGH_RISK | "High Risk" |  |
+| LIMITED_OR_LOW_RISK | "Limited or Low Risk" |  |
 
 
 
@@ -48,19 +49,22 @@ URI: [EuAiRiskCategory](EuAiRiskCategory.md)
 ## LinkML Source
 
 <details>
+
 ```yaml
 name: EuAiRiskCategory
 from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 rank: 1000
 permissible_values:
-  MINIMAL:
-    text: MINIMAL
-  LIMITED:
-    text: LIMITED
-  HIGH:
-    text: HIGH
-  UNACCEPTABLE:
-    text: UNACCEPTABLE
+  EXCLUDED:
+    text: Excluded
+  PROHIBITED:
+    text: Prohibited
+  HIGH_RISK_EXCEPTION:
+    text: High-Risk Exception
+  HIGH_RISK:
+    text: High Risk
+  LIMITED_OR_LOW_RISK:
+    text: Limited or Low Risk
 
 ```
 </details>

@@ -73,10 +73,11 @@ linkml_meta = LinkMLMeta(
 
 
 class EuAiRiskCategory(str, Enum):
-    MINIMAL = "MINIMAL"
-    LIMITED = "LIMITED"
-    HIGH = "HIGH"
-    UNACCEPTABLE = "UNACCEPTABLE"
+    EXCLUDED = "Excluded"
+    PROHIBITED = "Prohibited"
+    HIGH_RISK_EXCEPTION = "High-Risk Exception"
+    HIGH_RISK = "High Risk"
+    LIMITED_OR_LOW_RISK = "Limited or Low Risk"
 
 
 class AiSystemType(str, Enum):
