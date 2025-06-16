@@ -1210,19 +1210,19 @@ class RiskAtlasNexus:
                 Results detailing risk categorization by usecase.
         """
         type_check(
-            "<RAN3B9CD886E>",
+            "<RAN75727859E>",
             InferenceEngine,
             allow_none=False,
             inference_engine=inference_engine,
         )
         type_check(
-            "<RAN4CDA6852E>",
+            "<RAN68734549E>",
             List,
             allow_none=False,
             usecases=usecases,
         )
         value_check(
-            "<RAN0E435F50E>",
+            "<RAN30508300E>",
             inference_engine and usecases,
             "Please provide usecases and inference_engine",
         )
@@ -1238,12 +1238,13 @@ class RiskAtlasNexus:
         for usecase in usecases:
 
             # Get AI Domain of the usecase
-            domain = [
+            domain_predictions = [
                 domain.prediction["answer"]
                 for domain in self.identify_domain_from_usecases(
                     [usecase], inference_engine=inference_engine, verbose=False
                 )
-            ][0]
+            ]
+            domain = domain_predictions[0] if len(domain_predictions) == 1 else None
 
             # Using a risk questionnaire to identify key attributes necessary for
             # constituting an AI system from the usecase.
@@ -1268,10 +1269,15 @@ class RiskAtlasNexus:
             ]
 
             # Extracting predictions
-            ai_user = predictions[0]
-            purpose = predictions[1]
-            capability = predictions[2]
-            ai_subject = predictions[3]
+            if len(predictions) == 4:
+                ai_user = predictions[0]
+                purpose = predictions[1]
+                capability = predictions[2]
+                ai_subject = predictions[3]
+            else:
+                raise Exception(
+                    "Unable to retrieve all the required attributes from the usecase. Please try again."
+                )
 
             # Calling the risk categorization API with the required attributes.
             results.append(
