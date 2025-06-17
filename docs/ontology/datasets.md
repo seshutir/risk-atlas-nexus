@@ -10,8 +10,7 @@ _A list of data sets_
 
 
 URI: [nexus:datasets](https://ibm.github.io/risk-atlas-nexus/ontology/datasets)
-
-
+Alias: datasets
 
 <!-- no inheritance hierarchy -->
 

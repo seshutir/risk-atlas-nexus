@@ -10,8 +10,7 @@ _A relationship from a granting entity such as an Organization to a License inst
 
 
 URI: [nexus:grants_license](https://ibm.github.io/risk-atlas-nexus/ontology/grants_license)
-
-
+Alias: grants_license
 
 <!-- no inheritance hierarchy -->
 

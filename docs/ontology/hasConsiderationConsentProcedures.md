@@ -10,8 +10,7 @@ _Information on how consent was obtained (if applicable), especially for dataset
 
 
 URI: [nexus:hasConsiderationConsentProcedures](https://ibm.github.io/risk-atlas-nexus/ontology/hasConsiderationConsentProcedures)
-
-
+Alias: hasConsiderationConsentProcedures
 
 <!-- no inheritance hierarchy -->
 

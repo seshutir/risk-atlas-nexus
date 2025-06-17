@@ -10,8 +10,7 @@ _A relationship indicating that an entity has been imported by an organization._
 
 
 URI: [nexus:isImportedBy](https://ibm.github.io/risk-atlas-nexus/ontology/isImportedBy)
-
-
+Alias: isImportedBy
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _Annotation whether an AI risk occurs at input or output or is non-technical._
 
 
 URI: [nexus:type](https://ibm.github.io/risk-atlas-nexus/ontology/type)
-
-
+Alias: type
 
 <!-- no inheritance hierarchy -->
 

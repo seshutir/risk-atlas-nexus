@@ -36,8 +36,10 @@ URI: [nexus:Questionnaire](https://ibm.github.io/risk-atlas-nexus/ontology/Quest
 
 
 
-    Questionnaire --> "*" BenchmarkMetadataCard : hasBenchmarkMetadata
-    click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
+        Questionnaire --> "*" BenchmarkMetadataCard : hasBenchmarkMetadata
+        click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
 
 
       Questionnaire : hasDataset
@@ -45,8 +47,10 @@ URI: [nexus:Questionnaire](https://ibm.github.io/risk-atlas-nexus/ontology/Quest
 
 
 
-    Questionnaire --> "*" Dataset : hasDataset
-    click Dataset href "../Dataset"
+
+        Questionnaire --> "*" Dataset : hasDataset
+        click Dataset href "../Dataset"
+
 
 
       Questionnaire : hasDocumentation
@@ -54,8 +58,10 @@ URI: [nexus:Questionnaire](https://ibm.github.io/risk-atlas-nexus/ontology/Quest
 
 
 
-    Questionnaire --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        Questionnaire --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       Questionnaire : hasImplementation
@@ -65,8 +71,10 @@ URI: [nexus:Questionnaire](https://ibm.github.io/risk-atlas-nexus/ontology/Quest
 
 
 
-    Questionnaire --> "0..1" License : hasLicense
-    click License href "../License"
+
+        Questionnaire --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       Questionnaire : hasRelatedRisk
@@ -74,8 +82,10 @@ URI: [nexus:Questionnaire](https://ibm.github.io/risk-atlas-nexus/ontology/Quest
 
 
 
-    Questionnaire --> "*" Risk : hasRelatedRisk
-    click Risk href "../Risk"
+
+        Questionnaire --> "*" Risk : hasRelatedRisk
+        click Risk href "../Risk"
+
 
 
       Questionnaire : hasTasks

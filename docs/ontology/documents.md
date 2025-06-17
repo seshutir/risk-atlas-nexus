@@ -10,8 +10,7 @@ _A list of documents_
 
 
 URI: [nexus:documents](https://ibm.github.io/risk-atlas-nexus/ontology/documents)
-
-
+Alias: documents
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _relationship indicating data preprocessing steps performed on training data set
 
 
 URI: [nexus:training_data_preprocessing](https://ibm.github.io/risk-atlas-nexus/ontology/training_data_preprocessing)
-
-
+Alias: training_data_preprocessing
 
 <!-- no inheritance hierarchy -->
 

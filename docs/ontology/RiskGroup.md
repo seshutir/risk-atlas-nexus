@@ -30,8 +30,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Any : broadMatch
-    click Any href "../Any"
+
+        RiskGroup --> "*" Any : broadMatch
+        click Any href "../Any"
+
 
 
       RiskGroup : closeMatch
@@ -39,8 +41,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Any : closeMatch
-    click Any href "../Any"
+
+        RiskGroup --> "*" Any : closeMatch
+        click Any href "../Any"
+
 
 
       RiskGroup : dateCreated
@@ -54,8 +58,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Any : exactMatch
-    click Any href "../Any"
+
+        RiskGroup --> "*" Any : exactMatch
+        click Any href "../Any"
+
 
 
       RiskGroup : hasPart
@@ -63,8 +69,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Risk : hasPart
-    click Risk href "../Risk"
+
+        RiskGroup --> "*" Risk : hasPart
+        click Risk href "../Risk"
+
 
 
       RiskGroup : id
@@ -74,8 +82,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        RiskGroup --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
       RiskGroup : isDetectedBy
@@ -83,8 +93,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        RiskGroup --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       RiskGroup : name
@@ -94,8 +106,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Any : narrowMatch
-    click Any href "../Any"
+
+        RiskGroup --> "*" Any : narrowMatch
+        click Any href "../Any"
+
 
 
       RiskGroup : relatedMatch
@@ -103,8 +117,10 @@ URI: [nexus:RiskGroup](https://ibm.github.io/risk-atlas-nexus/ontology/RiskGroup
 
 
 
-    RiskGroup --> "*" Any : relatedMatch
-    click Any href "../Any"
+
+        RiskGroup --> "*" Any : relatedMatch
+        click Any href "../Any"
+
 
 
       RiskGroup : url

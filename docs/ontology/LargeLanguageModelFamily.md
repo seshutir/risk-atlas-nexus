@@ -34,8 +34,10 @@ URI: [nexus:LargeLanguageModelFamily](https://ibm.github.io/risk-atlas-nexus/ont
 
 
 
-    LargeLanguageModelFamily --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        LargeLanguageModelFamily --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       LargeLanguageModelFamily : id

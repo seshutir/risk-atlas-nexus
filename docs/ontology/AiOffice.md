@@ -34,8 +34,10 @@ URI: [schema:Organization](http://schema.org/Organization)
 
 
 
-    AiOffice --> "0..1" License : grants_license
-    click License href "../License"
+
+        AiOffice --> "0..1" License : grants_license
+        click License href "../License"
+
 
 
       AiOffice : id

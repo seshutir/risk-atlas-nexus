@@ -10,8 +10,7 @@ _A description of the fine-tuning mechanism(s) applied to a model._
 
 
 URI: [nexus:fine_tuning](https://ibm.github.io/risk-atlas-nexus/ontology/fine_tuning)
-
-
+Alias: fine_tuning
 
 <!-- no inheritance hierarchy -->
 

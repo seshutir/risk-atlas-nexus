@@ -10,8 +10,7 @@ _A list of risk related actions_
 
 
 URI: [nexus:actions](https://ibm.github.io/risk-atlas-nexus/ontology/actions)
-
-
+Alias: actions
 
 <!-- no inheritance hierarchy -->
 

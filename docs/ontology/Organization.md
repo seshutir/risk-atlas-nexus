@@ -41,8 +41,10 @@ URI: [schema:Organization](http://schema.org/Organization)
 
 
 
-    Organization --> "0..1" License : grants_license
-    click License href "../License"
+
+        Organization --> "0..1" License : grants_license
+        click License href "../License"
+
 
 
       Organization : id

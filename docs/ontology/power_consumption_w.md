@@ -10,8 +10,7 @@ _power consumption in Watts_
 
 
 URI: [nexus:power_consumption_w](https://ibm.github.io/risk-atlas-nexus/ontology/power_consumption_w)
-
-
+Alias: power_consumption_w
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:power_consumption_w](https://ibm.github.io/risk-atlas-nexus/ontology
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

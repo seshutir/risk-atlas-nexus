@@ -10,8 +10,7 @@ _The process used to annotate or label the dataset, including who or what perfor
 
 
 URI: [nexus:hasAnnotation](https://ibm.github.io/risk-atlas-nexus/ontology/hasAnnotation)
-
-
+Alias: hasAnnotation
 
 <!-- no inheritance hierarchy -->
 

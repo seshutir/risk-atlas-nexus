@@ -10,8 +10,7 @@ _How any personal or sensitive data is handled and whether any anonymization tec
 
 
 URI: [nexus:hasConsiderationPrivacyAndAnonymity](https://ibm.github.io/risk-atlas-nexus/ontology/hasConsiderationPrivacyAndAnonymity)
-
-
+Alias: hasConsiderationPrivacyAndAnonymity
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _The intended audience, such as researchers, developers, policymakers, etc._
 
 
 URI: [nexus:hasAudience](https://ibm.github.io/risk-atlas-nexus/ontology/hasAudience)
-
-
+Alias: hasAudience
 
 <!-- no inheritance hierarchy -->
 

@@ -34,8 +34,10 @@ URI: [airo:AIProvider](https://w3id.org/airo#AIProvider)
 
 
 
-    AiProvider --> "0..1" License : grants_license
-    click License href "../License"
+
+        AiProvider --> "0..1" License : grants_license
+        click License href "../License"
+
 
 
       AiProvider : id

@@ -10,8 +10,7 @@ _The specific performance metrics used to assess models (e.g., accuracy, F1 scor
 
 
 URI: [nexus:hasMetrics](https://ibm.github.io/risk-atlas-nexus/ontology/hasMetrics)
-
-
+Alias: hasMetrics
 
 <!-- no inheritance hierarchy -->
 

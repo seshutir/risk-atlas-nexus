@@ -10,8 +10,7 @@ _The property is used to link two concepts that are sufficiently similar that th
 
 
 URI: [skos:closeMatch](http://www.w3.org/2004/02/skos/core/closeMatch)
-
-
+Alias: closeMatch
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [skos:closeMatch](http://www.w3.org/2004/02/skos/core/closeMatch)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 | [RiskGroup](RiskGroup.md) | A group of AI system related risks that are part of a risk taxonomy |  no  |
+| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 
 
 

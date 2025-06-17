@@ -10,8 +10,7 @@ _The likelihood or probability or chance of something taking place or occuring_
 
 
 URI: [nexus:hasLikelihood](https://ibm.github.io/risk-atlas-nexus/ontology/hasLikelihood)
-
-
+Alias: hasLikelihood
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _Specific risks of LLMs the benchmark assesses_
 
 
 URI: [nexus:hasRelatedRisks](https://ibm.github.io/risk-atlas-nexus/ontology/hasRelatedRisks)
-
-
+Alias: hasRelatedRisks
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _Pertinent AI Actor Tasks for each subcategory. Not every AI Actor Task listed w
 
 
 URI: [nexus:hasAiActorTask](https://ibm.github.io/risk-atlas-nexus/ontology/hasAiActorTask)
-
-
+Alias: hasAiActorTask
 
 <!-- no inheritance hierarchy -->
 

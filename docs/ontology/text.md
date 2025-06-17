@@ -10,8 +10,7 @@ _The question itself_
 
 
 URI: [nexus:text](https://ibm.github.io/risk-atlas-nexus/ontology/text)
-
-
+Alias: text
 
 <!-- no inheritance hierarchy -->
 

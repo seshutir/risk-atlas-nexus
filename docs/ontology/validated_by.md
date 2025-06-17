@@ -10,8 +10,7 @@ _A relationship indicating the model validation steps after AI model training._
 
 
 URI: [nexus:validated_by](https://ibm.github.io/risk-atlas-nexus/ontology/validated_by)
-
-
+Alias: validated_by
 
 <!-- no inheritance hierarchy -->
 

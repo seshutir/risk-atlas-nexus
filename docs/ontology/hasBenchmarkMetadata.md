@@ -10,8 +10,7 @@ _A relationship to a Benchmark Metadata Card which contains metadata about the b
 
 
 URI: [nexus:hasBenchmarkMetadata](https://ibm.github.io/risk-atlas-nexus/ontology/hasBenchmarkMetadata)
-
-
+Alias: hasBenchmarkMetadata
 
 <!-- no inheritance hierarchy -->
 
@@ -24,8 +23,8 @@ URI: [nexus:hasBenchmarkMetadata](https://ibm.github.io/risk-atlas-nexus/ontolog
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [Questionnaire](Questionnaire.md) | A questionnaire groups questions |  no  |
-| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 | [Question](Question.md) | An evaluation where a question has to be answered |  no  |
+| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 
 
 

@@ -10,8 +10,7 @@ _The tasks or evaluations the benchmark is intended to assess._
 
 
 URI: [nexus:hasTasks](https://ibm.github.io/risk-atlas-nexus/ontology/hasTasks)
-
-
+Alias: hasTasks
 
 <!-- no inheritance hierarchy -->
 
@@ -23,10 +22,10 @@ URI: [nexus:hasTasks](https://ibm.github.io/risk-atlas-nexus/ontology/hasTasks)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Questionnaire](Questionnaire.md) | A questionnaire groups questions |  no  |
 | [BenchmarkMetadataCard](BenchmarkMetadataCard.md) | Benchmark metadata cards offer a standardized way to document LLM benchmarks ... |  no  |
-| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 | [Question](Question.md) | An evaluation where a question has to be answered |  no  |
+| [Questionnaire](Questionnaire.md) | A questionnaire groups questions |  no  |
+| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 
 
 

@@ -43,8 +43,10 @@ URI: [dqv:Metric](https://www.w3.org/TR/vocab-dqv/Metric)
 
 
 
-    AiEval --> "*" BenchmarkMetadataCard : hasBenchmarkMetadata
-    click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
+        AiEval --> "*" BenchmarkMetadataCard : hasBenchmarkMetadata
+        click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
 
 
       AiEval : hasDataset
@@ -52,8 +54,10 @@ URI: [dqv:Metric](https://www.w3.org/TR/vocab-dqv/Metric)
 
 
 
-    AiEval --> "*" Dataset : hasDataset
-    click Dataset href "../Dataset"
+
+        AiEval --> "*" Dataset : hasDataset
+        click Dataset href "../Dataset"
+
 
 
       AiEval : hasDocumentation
@@ -61,8 +65,10 @@ URI: [dqv:Metric](https://www.w3.org/TR/vocab-dqv/Metric)
 
 
 
-    AiEval --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        AiEval --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       AiEval : hasImplementation
@@ -72,8 +78,10 @@ URI: [dqv:Metric](https://www.w3.org/TR/vocab-dqv/Metric)
 
 
 
-    AiEval --> "0..1" License : hasLicense
-    click License href "../License"
+
+        AiEval --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       AiEval : hasRelatedRisk
@@ -81,8 +89,10 @@ URI: [dqv:Metric](https://www.w3.org/TR/vocab-dqv/Metric)
 
 
 
-    AiEval --> "*" Risk : hasRelatedRisk
-    click Risk href "../Risk"
+
+        AiEval --> "*" Risk : hasRelatedRisk
+        click Risk href "../Risk"
+
 
 
       AiEval : hasTasks

@@ -10,8 +10,7 @@ _The results of well-known or widely used models to give context to new performa
 
 
 URI: [nexus:hasBaselineResults](https://ibm.github.io/risk-atlas-nexus/ontology/hasBaselineResults)
-
-
+Alias: hasBaselineResults
 
 <!-- no inheritance hierarchy -->
 

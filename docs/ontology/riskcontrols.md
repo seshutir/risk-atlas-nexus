@@ -10,8 +10,7 @@ _A list of AI risk controls_
 
 
 URI: [nexus:riskcontrols](https://ibm.github.io/risk-atlas-nexus/ontology/riskcontrols)
-
-
+Alias: riskcontrols
 
 <!-- no inheritance hierarchy -->
 

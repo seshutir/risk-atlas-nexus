@@ -10,8 +10,7 @@ _Indicates consequence(s) possible or arising from specified concept_
 
 
 URI: [nexus:hasConsequence](https://ibm.github.io/risk-atlas-nexus/ontology/hasConsequence)
-
-
+Alias: hasConsequence
 
 <!-- no inheritance hierarchy -->
 

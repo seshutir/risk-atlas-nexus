@@ -30,8 +30,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Any : broadMatch
-    click Any href "../Any"
+
+        Risk --> "*" Any : broadMatch
+        click Any href "../Any"
+
 
 
       Risk : closeMatch
@@ -39,8 +41,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Any : closeMatch
-    click Any href "../Any"
+
+        Risk --> "*" Any : closeMatch
+        click Any href "../Any"
+
 
 
       Risk : concern
@@ -58,8 +62,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" RiskConcept : detectsRiskConcept
-    click RiskConcept href "../RiskConcept"
+
+        Risk --> "*" RiskConcept : detectsRiskConcept
+        click RiskConcept href "../RiskConcept"
+
 
 
       Risk : exactMatch
@@ -67,8 +73,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Any : exactMatch
-    click Any href "../Any"
+
+        Risk --> "*" Any : exactMatch
+        click Any href "../Any"
+
 
 
       Risk : hasRelatedAction
@@ -76,8 +84,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Action : hasRelatedAction
-    click Action href "../Action"
+
+        Risk --> "*" Action : hasRelatedAction
+        click Action href "../Action"
+
 
 
       Risk : id
@@ -87,8 +97,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        Risk --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
       Risk : isDetectedBy
@@ -96,8 +108,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        Risk --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       Risk : isPartOf
@@ -105,8 +119,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "0..1" RiskGroup : isPartOf
-    click RiskGroup href "../RiskGroup"
+
+        Risk --> "0..1" RiskGroup : isPartOf
+        click RiskGroup href "../RiskGroup"
+
 
 
       Risk : name
@@ -116,8 +132,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Any : narrowMatch
-    click Any href "../Any"
+
+        Risk --> "*" Any : narrowMatch
+        click Any href "../Any"
+
 
 
       Risk : phase
@@ -127,8 +145,10 @@ URI: [airo:Risk](https://w3id.org/airo#Risk)
 
 
 
-    Risk --> "*" Any : relatedMatch
-    click Any href "../Any"
+
+        Risk --> "*" Any : relatedMatch
+        click Any href "../Any"
+
 
 
       Risk : tag
@@ -514,7 +534,7 @@ attributes:
   detectsRiskConcept:
     name: detectsRiskConcept
     description: The property airo:detectsRiskConcept indicates the control used for
-      detecting risks, risk sources,  consequences, and impacts.
+      detecting risks, risk sources, consequences, and impacts.
     from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
     exact_mappings:
     - airo:detectsRiskConcept

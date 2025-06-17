@@ -10,8 +10,7 @@ _A relationship to the Organization instance that provides this instance._
 
 
 URI: [schema:provider](http://schema.org/provider)
-
-
+Alias: provider
 
 <!-- no inheritance hierarchy -->
 

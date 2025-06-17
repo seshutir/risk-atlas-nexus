@@ -10,8 +10,7 @@ _Indicates the status of specified concept_
 
 
 URI: [nexus:hasStatus](https://ibm.github.io/risk-atlas-nexus/ontology/hasStatus)
-
-
+Alias: hasStatus
 
 <!-- no inheritance hierarchy -->
 

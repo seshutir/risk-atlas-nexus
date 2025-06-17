@@ -10,8 +10,7 @@ _The property is used to link two concepts, indicating a high degree of confiden
 
 
 URI: [skos:exactMatch](http://www.w3.org/2004/02/skos/core/exactMatch)
-
-
+Alias: exactMatch
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [skos:exactMatch](http://www.w3.org/2004/02/skos/core/exactMatch)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 | [RiskGroup](RiskGroup.md) | A group of AI system related risks that are part of a risk taxonomy |  no  |
+| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 
 
 

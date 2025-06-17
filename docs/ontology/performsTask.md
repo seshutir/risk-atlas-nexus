@@ -10,8 +10,7 @@ _relationship indicating the AI tasks an AI model can perform._
 
 
 URI: [nexus:performsTask](https://ibm.github.io/risk-atlas-nexus/ontology/performsTask)
-
-
+Alias: performsTask
 
 <!-- no inheritance hierarchy -->
 
@@ -23,11 +22,11 @@ URI: [nexus:performsTask](https://ibm.github.io/risk-atlas-nexus/ontology/perfor
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [AiAgent](AiAgent.md) | An artificial intelligence (AI) agent refers to a system or program that is c... |  no  |
-| [BaseAi](BaseAi.md) | Any type of AI, be it a LLM, RL agent, SVM, etc |  no  |
-| [AiSystem](AiSystem.md) | A compound AI System composed of one or more AI capablities |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiSystem](AiSystem.md) | A compound AI System composed of one or more AI capablities |  no  |
+| [BaseAi](BaseAi.md) | Any type of AI, be it a LLM, RL agent, SVM, etc |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

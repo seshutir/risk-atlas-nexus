@@ -10,8 +10,7 @@ _A list of AI evaluation methods_
 
 
 URI: [nexus:evaluations](https://ibm.github.io/risk-atlas-nexus/ontology/evaluations)
-
-
+Alias: evaluations
 
 <!-- no inheritance hierarchy -->
 

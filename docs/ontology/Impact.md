@@ -33,8 +33,10 @@ URI: [dpv:Impact](https://w3c.github.io/dpv/2.1/dpv/#Impact)
 
 
 
-    Impact --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        Impact --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       Impact : name

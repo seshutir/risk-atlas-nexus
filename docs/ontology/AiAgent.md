@@ -34,8 +34,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        AiAgent --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       AiAgent : hasEuAiSystemType
@@ -43,8 +45,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "0..1" AiSystemType : hasEuAiSystemType
-    click AiSystemType href "../AiSystemType"
+
+        AiAgent --> "0..1" AiSystemType : hasEuAiSystemType
+        click AiSystemType href "../AiSystemType"
+
 
 
       AiAgent : hasEuRiskCategory
@@ -52,8 +56,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "0..1" EuAiRiskCategory : hasEuRiskCategory
-    click EuAiRiskCategory href "../EuAiRiskCategory"
+
+        AiAgent --> "0..1" EuAiRiskCategory : hasEuRiskCategory
+        click EuAiRiskCategory href "../EuAiRiskCategory"
+
 
 
       AiAgent : hasLicense
@@ -61,8 +67,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "0..1" License : hasLicense
-    click License href "../License"
+
+        AiAgent --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       AiAgent : hasModelCard
@@ -74,8 +82,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "0..1" AiProvider : isProvidedBy
-    click AiProvider href "../AiProvider"
+
+        AiAgent --> "0..1" AiProvider : isProvidedBy
+        click AiProvider href "../AiProvider"
+
 
 
       AiAgent : name
@@ -85,8 +95,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "*" AiTask : performsTask
-    click AiTask href "../AiTask"
+
+        AiAgent --> "*" AiTask : performsTask
+        click AiTask href "../AiTask"
+
 
 
       AiAgent : producer
@@ -94,8 +106,10 @@ URI: [nexus:AiAgent](https://ibm.github.io/risk-atlas-nexus/ontology/AiAgent)
 
 
 
-    AiAgent --> "0..1" Organization : producer
-    click Organization href "../Organization"
+
+        AiAgent --> "0..1" Organization : producer
+        click Organization href "../Organization"
+
 
 
       AiAgent : url

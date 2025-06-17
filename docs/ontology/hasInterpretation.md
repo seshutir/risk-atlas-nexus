@@ -10,8 +10,7 @@ _How users should interpret the scores or results from the metrics._
 
 
 URI: [nexus:hasInterpretation](https://ibm.github.io/risk-atlas-nexus/ontology/hasInterpretation)
-
-
+Alias: hasInterpretation
 
 <!-- no inheritance hierarchy -->
 

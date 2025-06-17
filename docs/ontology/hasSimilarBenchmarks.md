@@ -10,8 +10,7 @@ _Benchmarks that are closely related in terms of goals or data type._
 
 
 URI: [nexus:hasSimilarBenchmarks](https://ibm.github.io/risk-atlas-nexus/ontology/hasSimilarBenchmarks)
-
-
+Alias: hasSimilarBenchmarks
 
 <!-- no inheritance hierarchy -->
 

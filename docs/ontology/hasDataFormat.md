@@ -10,8 +10,7 @@ _The structure and modality of the data (e.g., sentence pairs, question-answer f
 
 
 URI: [nexus:hasDataFormat](https://ibm.github.io/risk-atlas-nexus/ontology/hasDataFormat)
-
-
+Alias: hasDataFormat
 
 <!-- no inheritance hierarchy -->
 

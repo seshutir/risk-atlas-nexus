@@ -10,8 +10,7 @@ _The author or authors of the incident report_
 
 
 URI: [nexus:author](https://ibm.github.io/risk-atlas-nexus/ontology/author)
-
-
+Alias: author
 
 <!-- no inheritance hierarchy -->
 

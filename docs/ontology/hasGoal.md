@@ -10,8 +10,7 @@ _The specific goal or primary use case the benchmark is designed for._
 
 
 URI: [nexus:hasGoal](https://ibm.github.io/risk-atlas-nexus/ontology/hasGoal)
-
-
+Alias: hasGoal
 
 <!-- no inheritance hierarchy -->
 

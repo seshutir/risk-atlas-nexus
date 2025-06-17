@@ -10,8 +10,7 @@ _The specific domains or areas where the benchmark is applied (e.g., natural lan
 
 
 URI: [nexus:hasDomains](https://ibm.github.io/risk-atlas-nexus/ontology/hasDomains)
-
-
+Alias: hasDomains
 
 <!-- no inheritance hierarchy -->
 

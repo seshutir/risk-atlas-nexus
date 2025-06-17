@@ -10,8 +10,7 @@ _How the benchmark evaluates performance across different demographic groups (e.
 
 
 URI: [nexus:hasDemographicAnalysis](https://ibm.github.io/risk-atlas-nexus/ontology/hasDemographicAnalysis)
-
-
+Alias: hasDemographicAnalysis
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _The number of tons of carbon dioxide equivalent that are emitted during trainin
 
 
 URI: [nexus:carbon_emitted](https://ibm.github.io/risk-atlas-nexus/ontology/carbon_emitted)
-
-
+Alias: carbon_emitted
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:carbon_emitted](https://ibm.github.io/risk-atlas-nexus/ontology/carb
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

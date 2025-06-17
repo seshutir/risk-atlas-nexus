@@ -10,8 +10,7 @@ _The way metrics are computed based on model outputs and the benchmark data._
 
 
 URI: [nexus:hasCalculation](https://ibm.github.io/risk-atlas-nexus/ontology/hasCalculation)
-
-
+Alias: hasCalculation
 
 <!-- no inheritance hierarchy -->
 

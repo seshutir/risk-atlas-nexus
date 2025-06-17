@@ -36,8 +36,10 @@ URI: [airo:RiskControl](https://w3id.org/airo#RiskControl)
 
 
 
-    RiskControl --> "*" RiskConcept : detectsRiskConcept
-    click RiskConcept href "../RiskConcept"
+
+        RiskControl --> "*" RiskConcept : detectsRiskConcept
+        click RiskConcept href "../RiskConcept"
+
 
 
       RiskControl : id
@@ -47,8 +49,10 @@ URI: [airo:RiskControl](https://w3id.org/airo#RiskControl)
 
 
 
-    RiskControl --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        RiskControl --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
       RiskControl : isDetectedBy
@@ -56,8 +60,10 @@ URI: [airo:RiskControl](https://w3id.org/airo#RiskControl)
 
 
 
-    RiskControl --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        RiskControl --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       RiskControl : name
@@ -181,7 +187,7 @@ attributes:
   detectsRiskConcept:
     name: detectsRiskConcept
     description: The property airo:detectsRiskConcept indicates the control used for
-      detecting risks, risk sources,  consequences, and impacts.
+      detecting risks, risk sources, consequences, and impacts.
     from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
     exact_mappings:
     - airo:detectsRiskConcept

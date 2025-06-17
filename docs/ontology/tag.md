@@ -10,8 +10,7 @@ _A shost version of the name_
 
 
 URI: [nexus:tag](https://ibm.github.io/risk-atlas-nexus/ontology/tag)
-
-
+Alias: tag
 
 <!-- no inheritance hierarchy -->
 

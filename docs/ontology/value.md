@@ -10,8 +10,7 @@ _Some numeric or string value_
 
 
 URI: [nexus:value](https://ibm.github.io/risk-atlas-nexus/ontology/value)
-
-
+Alias: value
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _A relationship where an entity has another entity_
 
 
 URI: [schema:hasPart](http://schema.org/hasPart)
-
-
+Alias: hasPart
 
 <!-- no inheritance hierarchy -->
 

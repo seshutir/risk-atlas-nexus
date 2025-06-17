@@ -10,8 +10,7 @@ _Relationship indicating the some entity is composed of other entities (includin
 
 
 URI: [nexus:isComposedOf](https://ibm.github.io/risk-atlas-nexus/ontology/isComposedOf)
-
-
+Alias: isComposedOf
 
 <!-- no inheritance hierarchy -->
 

@@ -38,8 +38,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" Consequence : hasConsequence
-    click Consequence href "../Consequence"
+
+        RiskIncident --> "0..1" Consequence : hasConsequence
+        click Consequence href "../Consequence"
+
 
 
       RiskIncident : hasImpact
@@ -47,8 +49,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" Impact : hasImpact
-    click Impact href "../Impact"
+
+        RiskIncident --> "0..1" Impact : hasImpact
+        click Impact href "../Impact"
+
 
 
       RiskIncident : hasImpactOn
@@ -56,8 +60,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" Impact : hasImpactOn
-    click Impact href "../Impact"
+
+        RiskIncident --> "0..1" Impact : hasImpactOn
+        click Impact href "../Impact"
+
 
 
       RiskIncident : hasLikelihood
@@ -65,8 +71,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" Likelihood : hasLikelihood
-    click Likelihood href "../Likelihood"
+
+        RiskIncident --> "0..1" Likelihood : hasLikelihood
+        click Likelihood href "../Likelihood"
+
 
 
       RiskIncident : hasSeverity
@@ -74,8 +82,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" Severity : hasSeverity
-    click Severity href "../Severity"
+
+        RiskIncident --> "0..1" Severity : hasSeverity
+        click Severity href "../Severity"
+
 
 
       RiskIncident : hasStatus
@@ -83,8 +93,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" IncidentStatus : hasStatus
-    click IncidentStatus href "../IncidentStatus"
+
+        RiskIncident --> "0..1" IncidentStatus : hasStatus
+        click IncidentStatus href "../IncidentStatus"
+
 
 
       RiskIncident : hasVariant
@@ -92,8 +104,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" RiskIncident : hasVariant
-    click RiskIncident href "../RiskIncident"
+
+        RiskIncident --> "0..1" RiskIncident : hasVariant
+        click RiskIncident href "../RiskIncident"
+
 
 
       RiskIncident : id
@@ -103,8 +117,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        RiskIncident --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
       RiskIncident : isDetectedBy
@@ -112,8 +128,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        RiskIncident --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       RiskIncident : name
@@ -123,8 +141,10 @@ URI: [https://w3id.org/dpv/risk#Incident](https://w3id.org/dpv/risk#Incident)
 
 
 
-    RiskIncident --> "*" Risk : refersToRisk
-    click Risk href "../Risk"
+
+        RiskIncident --> "*" Risk : refersToRisk
+        click Risk href "../Risk"
+
 
 
       RiskIncident : source_uri
@@ -396,8 +416,8 @@ attributes:
     range: Impact
   hasVariant:
     name: hasVariant
-    description: 'Indicates an incident that shares the same causative factors, produces
-      similar harms, and involves the same intelligent systems as a known AI incident. '
+    description: Indicates an incident that shares the same causative factors, produces
+      similar harms, and involves the same intelligent systems as a known AI incident.
     from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
     rank: 1000
     domain: RiskIncident

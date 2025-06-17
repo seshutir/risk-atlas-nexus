@@ -10,8 +10,7 @@ _Indicates impact(s) possible or arising as consequences from specified concept_
 
 
 URI: [nexus:hasImpact](https://ibm.github.io/risk-atlas-nexus/ontology/hasImpact)
-
-
+Alias: hasImpact
 
 <!-- no inheritance hierarchy -->
 

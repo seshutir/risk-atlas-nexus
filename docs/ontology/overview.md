@@ -10,8 +10,7 @@ _A brief description of the benchmark's main goals and scope._
 
 
 URI: [nexus:overview](https://ibm.github.io/risk-atlas-nexus/ontology/overview)
-
-
+Alias: overview
 
 <!-- no inheritance hierarchy -->
 

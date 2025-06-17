@@ -10,8 +10,7 @@ _Annotation whether an AI risk shows specifically during the training-tuning or 
 
 
 URI: [nexus:phase](https://ibm.github.io/risk-atlas-nexus/ontology/phase)
-
-
+Alias: phase
 
 <!-- no inheritance hierarchy -->
 

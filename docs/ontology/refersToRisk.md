@@ -10,8 +10,7 @@ _Indicates the incident (subject) is a materialisation of the indicated risk (ob
 
 
 URI: [nexus:refersToRisk](https://ibm.github.io/risk-atlas-nexus/ontology/refersToRisk)
-
-
+Alias: refersToRisk
 
 <!-- no inheritance hierarchy -->
 

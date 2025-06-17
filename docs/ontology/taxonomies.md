@@ -10,8 +10,7 @@ _A list of AI risk taxonomies_
 
 
 URI: [nexus:taxonomies](https://ibm.github.io/risk-atlas-nexus/ontology/taxonomies)
-
-
+Alias: taxonomies
 
 <!-- no inheritance hierarchy -->
 

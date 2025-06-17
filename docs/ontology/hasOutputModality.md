@@ -10,8 +10,7 @@ _A relationship indicating the output modalities supported by an AI component. E
 
 
 URI: [nexus:hasOutputModality](https://ibm.github.io/risk-atlas-nexus/ontology/hasOutputModality)
-
-
+Alias: hasOutputModality
 
 <!-- no inheritance hierarchy -->
 

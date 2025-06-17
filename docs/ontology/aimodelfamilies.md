@@ -10,8 +10,7 @@ _A list of AI model families_
 
 
 URI: [nexus:aimodelfamilies](https://ibm.github.io/risk-atlas-nexus/ontology/aimodelfamilies)
-
-
+Alias: aimodelfamilies
 
 <!-- no inheritance hierarchy -->
 

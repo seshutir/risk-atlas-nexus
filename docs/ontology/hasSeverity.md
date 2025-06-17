@@ -10,8 +10,7 @@ _Indicates the severity associated with a concept_
 
 
 URI: [nexus:hasSeverity](https://ibm.github.io/risk-atlas-nexus/ontology/hasSeverity)
-
-
+Alias: hasSeverity
 
 <!-- no inheritance hierarchy -->
 

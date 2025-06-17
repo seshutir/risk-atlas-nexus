@@ -39,8 +39,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        AiSystem --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       AiSystem : hasEuAiSystemType
@@ -48,8 +50,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "0..1" AiSystemType : hasEuAiSystemType
-    click AiSystemType href "../AiSystemType"
+
+        AiSystem --> "0..1" AiSystemType : hasEuAiSystemType
+        click AiSystemType href "../AiSystemType"
+
 
 
       AiSystem : hasEuRiskCategory
@@ -57,8 +61,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "0..1" EuAiRiskCategory : hasEuRiskCategory
-    click EuAiRiskCategory href "../EuAiRiskCategory"
+
+        AiSystem --> "0..1" EuAiRiskCategory : hasEuRiskCategory
+        click EuAiRiskCategory href "../EuAiRiskCategory"
+
 
 
       AiSystem : hasLicense
@@ -66,8 +72,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "0..1" License : hasLicense
-    click License href "../License"
+
+        AiSystem --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       AiSystem : hasModelCard
@@ -79,8 +87,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "0..1" AiProvider : isProvidedBy
-    click AiProvider href "../AiProvider"
+
+        AiSystem --> "0..1" AiProvider : isProvidedBy
+        click AiProvider href "../AiProvider"
+
 
 
       AiSystem : name
@@ -90,8 +100,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "*" AiTask : performsTask
-    click AiTask href "../AiTask"
+
+        AiSystem --> "*" AiTask : performsTask
+        click AiTask href "../AiTask"
+
 
 
       AiSystem : producer
@@ -99,8 +111,10 @@ URI: [airo:AISystem](https://w3id.org/airo#AISystem)
 
 
 
-    AiSystem --> "0..1" Organization : producer
-    click Organization href "../Organization"
+
+        AiSystem --> "0..1" Organization : producer
+        click Organization href "../Organization"
+
 
 
       AiSystem : url

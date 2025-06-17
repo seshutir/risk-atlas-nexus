@@ -34,8 +34,10 @@ URI: [nexus:RiskTaxonomy](https://ibm.github.io/risk-atlas-nexus/ontology/RiskTa
 
 
 
-    RiskTaxonomy --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        RiskTaxonomy --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       RiskTaxonomy : hasLicense
@@ -43,8 +45,10 @@ URI: [nexus:RiskTaxonomy](https://ibm.github.io/risk-atlas-nexus/ontology/RiskTa
 
 
 
-    RiskTaxonomy --> "0..1" License : hasLicense
-    click License href "../License"
+
+        RiskTaxonomy --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       RiskTaxonomy : id

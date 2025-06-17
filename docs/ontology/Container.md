@@ -25,8 +25,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Action : actions
-    click Action href "../Action"
+
+        Container --> "*" Action : actions
+        click Action href "../Action"
+
 
 
       Container : aimodelfamilies
@@ -34,8 +36,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" LargeLanguageModelFamily : aimodelfamilies
-    click LargeLanguageModelFamily href "../LargeLanguageModelFamily"
+
+        Container --> "*" LargeLanguageModelFamily : aimodelfamilies
+        click LargeLanguageModelFamily href "../LargeLanguageModelFamily"
+
 
 
       Container : aimodels
@@ -43,8 +47,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" LargeLanguageModel : aimodels
-    click LargeLanguageModel href "../LargeLanguageModel"
+
+        Container --> "*" LargeLanguageModel : aimodels
+        click LargeLanguageModel href "../LargeLanguageModel"
+
 
 
       Container : aitasks
@@ -52,8 +58,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" AiTask : aitasks
-    click AiTask href "../AiTask"
+
+        Container --> "*" AiTask : aitasks
+        click AiTask href "../AiTask"
+
 
 
       Container : benchmarkmetadatacards
@@ -61,8 +69,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" BenchmarkMetadataCard : benchmarkmetadatacards
-    click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
+        Container --> "*" BenchmarkMetadataCard : benchmarkmetadatacards
+        click BenchmarkMetadataCard href "../BenchmarkMetadataCard"
+
 
 
       Container : datasets
@@ -70,8 +80,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Dataset : datasets
-    click Dataset href "../Dataset"
+
+        Container --> "*" Dataset : datasets
+        click Dataset href "../Dataset"
+
 
 
       Container : documents
@@ -79,8 +91,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Documentation : documents
-    click Documentation href "../Documentation"
+
+        Container --> "*" Documentation : documents
+        click Documentation href "../Documentation"
+
 
 
       Container : evaluations
@@ -88,8 +102,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" AiEval : evaluations
-    click AiEval href "../AiEval"
+
+        Container --> "*" AiEval : evaluations
+        click AiEval href "../AiEval"
+
 
 
       Container : licenses
@@ -97,8 +113,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" License : licenses
-    click License href "../License"
+
+        Container --> "*" License : licenses
+        click License href "../License"
+
 
 
       Container : modalities
@@ -106,8 +124,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Modality : modalities
-    click Modality href "../Modality"
+
+        Container --> "*" Modality : modalities
+        click Modality href "../Modality"
+
 
 
       Container : organizations
@@ -115,8 +135,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Organization : organizations
-    click Organization href "../Organization"
+
+        Container --> "*" Organization : organizations
+        click Organization href "../Organization"
+
 
 
       Container : riskcontrols
@@ -124,8 +146,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" RiskControl : riskcontrols
-    click RiskControl href "../RiskControl"
+
+        Container --> "*" RiskControl : riskcontrols
+        click RiskControl href "../RiskControl"
+
 
 
       Container : riskgroups
@@ -133,8 +157,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" RiskGroup : riskgroups
-    click RiskGroup href "../RiskGroup"
+
+        Container --> "*" RiskGroup : riskgroups
+        click RiskGroup href "../RiskGroup"
+
 
 
       Container : riskincidents
@@ -142,8 +168,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" RiskIncident : riskincidents
-    click RiskIncident href "../RiskIncident"
+
+        Container --> "*" RiskIncident : riskincidents
+        click RiskIncident href "../RiskIncident"
+
 
 
       Container : risks
@@ -151,8 +179,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" Risk : risks
-    click Risk href "../Risk"
+
+        Container --> "*" Risk : risks
+        click Risk href "../Risk"
+
 
 
       Container : taxonomies
@@ -160,8 +190,10 @@ URI: [nexus:Container](https://ibm.github.io/risk-atlas-nexus/ontology/Container
 
 
 
-    Container --> "*" RiskTaxonomy : taxonomies
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        Container --> "*" RiskTaxonomy : taxonomies
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
 

@@ -10,8 +10,7 @@ _Links to relevant resources, such as repositories or papers related to the benc
 
 
 URI: [nexus:hasResources](https://ibm.github.io/risk-atlas-nexus/ontology/hasResources)
-
-
+Alias: hasResources
 
 <!-- no inheritance hierarchy -->
 

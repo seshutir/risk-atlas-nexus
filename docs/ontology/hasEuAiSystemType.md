@@ -10,8 +10,7 @@ _The type of system as defined by the EU AI Act._
 
 
 URI: [nexus:hasEuAiSystemType](https://ibm.github.io/risk-atlas-nexus/ontology/hasEuAiSystemType)
-
-
+Alias: hasEuAiSystemType
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:hasEuAiSystemType](https://ibm.github.io/risk-atlas-nexus/ontology/h
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiAgent](AiAgent.md) | An artificial intelligence (AI) agent refers to a system or program that is c... |  no  |
 | [AiSystem](AiSystem.md) | A compound AI System composed of one or more AI capablities |  no  |
+| [AiAgent](AiAgent.md) | An artificial intelligence (AI) agent refers to a system or program that is c... |  no  |
 
 
 

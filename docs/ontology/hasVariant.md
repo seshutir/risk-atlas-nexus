@@ -3,15 +3,14 @@
 # Slot: hasVariant
 
 
-_Indicates an incident that shares the same causative factors, produces similar harms, and involves the same intelligent systems as a known AI incident. _
+_Indicates an incident that shares the same causative factors, produces similar harms, and involves the same intelligent systems as a known AI incident._
 
 
 
 
 
 URI: [nexus:hasVariant](https://ibm.github.io/risk-atlas-nexus/ontology/hasVariant)
-
-
+Alias: hasVariant
 
 <!-- no inheritance hierarchy -->
 
@@ -70,8 +69,8 @@ URI: [nexus:hasVariant](https://ibm.github.io/risk-atlas-nexus/ontology/hasVaria
 <details>
 ```yaml
 name: hasVariant
-description: 'Indicates an incident that shares the same causative factors, produces
-  similar harms, and involves the same intelligent systems as a known AI incident. '
+description: Indicates an incident that shares the same causative factors, produces
+  similar harms, and involves the same intelligent systems as a known AI incident.
 from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 rank: 1000
 domain: RiskIncident

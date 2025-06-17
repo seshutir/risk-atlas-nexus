@@ -45,8 +45,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        AiModel --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       AiModel : hasEvaluation
@@ -54,8 +56,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "*" AiEvalResult : hasEvaluation
-    click AiEvalResult href "../AiEvalResult"
+
+        AiModel --> "*" AiEvalResult : hasEvaluation
+        click AiEvalResult href "../AiEvalResult"
+
 
 
       AiModel : hasLicense
@@ -63,8 +67,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "0..1" License : hasLicense
-    click License href "../License"
+
+        AiModel --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       AiModel : hasModelCard
@@ -74,8 +80,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "*" RiskControl : hasRiskControl
-    click RiskControl href "../RiskControl"
+
+        AiModel --> "*" RiskControl : hasRiskControl
+        click RiskControl href "../RiskControl"
+
 
 
       AiModel : id
@@ -85,8 +93,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "0..1" AiProvider : isProvidedBy
-    click AiProvider href "../AiProvider"
+
+        AiModel --> "0..1" AiProvider : isProvidedBy
+        click AiProvider href "../AiProvider"
+
 
 
       AiModel : name
@@ -96,8 +106,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "*" AiTask : performsTask
-    click AiTask href "../AiTask"
+
+        AiModel --> "*" AiTask : performsTask
+        click AiTask href "../AiTask"
+
 
 
       AiModel : power_consumption_w
@@ -107,8 +119,10 @@ URI: [nexus:AiModel](https://ibm.github.io/risk-atlas-nexus/ontology/AiModel)
 
 
 
-    AiModel --> "0..1" Organization : producer
-    click Organization href "../Organization"
+
+        AiModel --> "0..1" Organization : producer
+        click Organization href "../Organization"
+
 
 
       AiModel : url

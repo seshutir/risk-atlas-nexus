@@ -10,8 +10,7 @@ _The type of data used in the benchmark (e.g., text, images, or multi-modal)_
 
 
 URI: [nexus:hasDataType](https://ibm.github.io/risk-atlas-nexus/ontology/hasDataType)
-
-
+Alias: hasDataType
 
 <!-- no inheritance hierarchy -->
 

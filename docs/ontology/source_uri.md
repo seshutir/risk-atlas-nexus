@@ -10,8 +10,7 @@ _The uri of the incident_
 
 
 URI: [nexus:source_uri](https://ibm.github.io/risk-atlas-nexus/ontology/source_uri)
-
-
+Alias: source_uri
 
 <!-- no inheritance hierarchy -->
 

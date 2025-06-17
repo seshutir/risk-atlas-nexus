@@ -10,8 +10,7 @@ _A relationship where a BenchmarkMetadataCard describes and AI evaluation (bench
 
 
 URI: [nexus:describesAiEval](https://ibm.github.io/risk-atlas-nexus/ontology/describesAiEval)
-
-
+Alias: describesAiEval
 
 <!-- no inheritance hierarchy -->
 

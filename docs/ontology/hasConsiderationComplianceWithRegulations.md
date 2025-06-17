@@ -10,8 +10,7 @@ _Compliance with relevant legal or ethical regulations (if applicable)._
 
 
 URI: [nexus:hasConsiderationComplianceWithRegulations](https://ibm.github.io/risk-atlas-nexus/ontology/hasConsiderationComplianceWithRegulations)
-
-
+Alias: hasConsiderationComplianceWithRegulations
 
 <!-- no inheritance hierarchy -->
 

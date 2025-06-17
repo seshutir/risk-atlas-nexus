@@ -32,8 +32,10 @@ URI: [nexus:benchmarkmetadatacard](https://ibm.github.io/risk-atlas-nexus/ontolo
 
 
 
-    BenchmarkMetadataCard --> "*" AiEval : describesAiEval
-    click AiEval href "../AiEval"
+
+        BenchmarkMetadataCard --> "*" AiEval : describesAiEval
+        click AiEval href "../AiEval"
+
 
 
       BenchmarkMetadataCard : description
@@ -67,8 +69,10 @@ URI: [nexus:benchmarkmetadatacard](https://ibm.github.io/risk-atlas-nexus/ontolo
 
 
 
-    BenchmarkMetadataCard --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        BenchmarkMetadataCard --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       BenchmarkMetadataCard : hasDomains
@@ -84,8 +88,10 @@ URI: [nexus:benchmarkmetadatacard](https://ibm.github.io/risk-atlas-nexus/ontolo
 
 
 
-    BenchmarkMetadataCard --> "0..1" License : hasLicense
-    click License href "../License"
+
+        BenchmarkMetadataCard --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       BenchmarkMetadataCard : hasLimitations

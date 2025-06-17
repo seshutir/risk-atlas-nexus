@@ -10,8 +10,7 @@ _A list of AI risk incidents_
 
 
 URI: [nexus:riskincidents](https://ibm.github.io/risk-atlas-nexus/ontology/riskincidents)
-
-
+Alias: riskincidents
 
 <!-- no inheritance hierarchy -->
 

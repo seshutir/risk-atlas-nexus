@@ -44,8 +44,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        LargeLanguageModel --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       LargeLanguageModel : hasEvaluation
@@ -53,8 +55,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" AiEvalResult : hasEvaluation
-    click AiEvalResult href "../AiEvalResult"
+
+        LargeLanguageModel --> "*" AiEvalResult : hasEvaluation
+        click AiEvalResult href "../AiEvalResult"
+
 
 
       LargeLanguageModel : hasInputModality
@@ -62,8 +66,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" Modality : hasInputModality
-    click Modality href "../Modality"
+
+        LargeLanguageModel --> "*" Modality : hasInputModality
+        click Modality href "../Modality"
+
 
 
       LargeLanguageModel : hasLicense
@@ -71,8 +77,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "0..1" License : hasLicense
-    click License href "../License"
+
+        LargeLanguageModel --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       LargeLanguageModel : hasModelCard
@@ -82,8 +90,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" Modality : hasOutputModality
-    click Modality href "../Modality"
+
+        LargeLanguageModel --> "*" Modality : hasOutputModality
+        click Modality href "../Modality"
+
 
 
       LargeLanguageModel : hasRiskControl
@@ -91,8 +101,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" RiskControl : hasRiskControl
-    click RiskControl href "../RiskControl"
+
+        LargeLanguageModel --> "*" RiskControl : hasRiskControl
+        click RiskControl href "../RiskControl"
+
 
 
       LargeLanguageModel : hasTrainingData
@@ -100,8 +112,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" Dataset : hasTrainingData
-    click Dataset href "../Dataset"
+
+        LargeLanguageModel --> "*" Dataset : hasTrainingData
+        click Dataset href "../Dataset"
+
 
 
       LargeLanguageModel : id
@@ -111,8 +125,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "0..1" LargeLanguageModelFamily : isPartOf
-    click LargeLanguageModelFamily href "../LargeLanguageModelFamily"
+
+        LargeLanguageModel --> "0..1" LargeLanguageModelFamily : isPartOf
+        click LargeLanguageModelFamily href "../LargeLanguageModelFamily"
+
 
 
       LargeLanguageModel : isProvidedBy
@@ -120,8 +136,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "0..1" AiProvider : isProvidedBy
-    click AiProvider href "../AiProvider"
+
+        LargeLanguageModel --> "0..1" AiProvider : isProvidedBy
+        click AiProvider href "../AiProvider"
+
 
 
       LargeLanguageModel : name
@@ -135,8 +153,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "*" AiTask : performsTask
-    click AiTask href "../AiTask"
+
+        LargeLanguageModel --> "*" AiTask : performsTask
+        click AiTask href "../AiTask"
+
 
 
       LargeLanguageModel : power_consumption_w
@@ -146,8 +166,10 @@ URI: [nexus:LargeLanguageModel](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 
 
-    LargeLanguageModel --> "0..1" Organization : producer
-    click Organization href "../Organization"
+
+        LargeLanguageModel --> "0..1" Organization : producer
+        click Organization href "../Organization"
+
 
 
       LargeLanguageModel : supported_languages

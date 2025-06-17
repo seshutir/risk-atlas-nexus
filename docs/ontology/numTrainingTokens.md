@@ -10,8 +10,7 @@ _The number of tokens a AI model was trained on._
 
 
 URI: [nexus:numTrainingTokens](https://ibm.github.io/risk-atlas-nexus/ontology/numTrainingTokens)
-
-
+Alias: numTrainingTokens
 
 <!-- no inheritance hierarchy -->
 

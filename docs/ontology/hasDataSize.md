@@ -10,8 +10,7 @@ _The size of the dataset, including the number of data points or examples._
 
 
 URI: [nexus:hasDataSize](https://ibm.github.io/risk-atlas-nexus/ontology/hasDataSize)
-
-
+Alias: hasDataSize
 
 <!-- no inheritance hierarchy -->
 

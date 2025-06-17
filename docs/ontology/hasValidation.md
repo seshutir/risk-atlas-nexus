@@ -10,8 +10,7 @@ _Measures taken to ensure that the benchmark provides valid and reliable evaluat
 
 
 URI: [nexus:hasValidation](https://ibm.github.io/risk-atlas-nexus/ontology/hasValidation)
-
-
+Alias: hasValidation
 
 <!-- no inheritance hierarchy -->
 

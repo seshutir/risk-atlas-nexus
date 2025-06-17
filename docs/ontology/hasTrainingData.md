@@ -10,8 +10,7 @@ _A relationship indicating the datasets an AI model was trained on._
 
 
 URI: [airo:hasTrainingData](https://w3id.org/airo#hasTrainingData)
-
-
+Alias: hasTrainingData
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _The origin or source of the data used in the benchmark (e.g., curated datasets,
 
 
 URI: [nexus:hasDataSource](https://ibm.github.io/risk-atlas-nexus/ontology/hasDataSource)
-
-
+Alias: hasDataSource
 
 <!-- no inheritance hierarchy -->
 

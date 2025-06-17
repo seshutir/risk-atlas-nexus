@@ -10,8 +10,7 @@ _Use cases where the benchmark is not designed to be applied and could give misl
 
 
 URI: [nexus:hasOutOfScopeUses](https://ibm.github.io/risk-atlas-nexus/ontology/hasOutOfScopeUses)
-
-
+Alias: hasOutOfScopeUses
 
 <!-- no inheritance hierarchy -->
 

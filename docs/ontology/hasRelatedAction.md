@@ -10,8 +10,7 @@ _A relationship where an entity relates to an action_
 
 
 URI: [nexus:hasRelatedAction](https://ibm.github.io/risk-atlas-nexus/ontology/hasRelatedAction)
-
-
+Alias: hasRelatedAction
 
 <!-- no inheritance hierarchy -->
 

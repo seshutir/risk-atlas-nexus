@@ -43,8 +43,10 @@ URI: [nexus:BaseAi](https://ibm.github.io/risk-atlas-nexus/ontology/BaseAi)
 
 
 
-    BaseAi --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        BaseAi --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       BaseAi : hasLicense
@@ -52,8 +54,10 @@ URI: [nexus:BaseAi](https://ibm.github.io/risk-atlas-nexus/ontology/BaseAi)
 
 
 
-    BaseAi --> "0..1" License : hasLicense
-    click License href "../License"
+
+        BaseAi --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       BaseAi : hasModelCard
@@ -65,8 +69,10 @@ URI: [nexus:BaseAi](https://ibm.github.io/risk-atlas-nexus/ontology/BaseAi)
 
 
 
-    BaseAi --> "0..1" AiProvider : isProvidedBy
-    click AiProvider href "../AiProvider"
+
+        BaseAi --> "0..1" AiProvider : isProvidedBy
+        click AiProvider href "../AiProvider"
+
 
 
       BaseAi : name
@@ -76,8 +82,10 @@ URI: [nexus:BaseAi](https://ibm.github.io/risk-atlas-nexus/ontology/BaseAi)
 
 
 
-    BaseAi --> "*" AiTask : performsTask
-    click AiTask href "../AiTask"
+
+        BaseAi --> "*" AiTask : performsTask
+        click AiTask href "../AiTask"
+
 
 
       BaseAi : producer
@@ -85,8 +93,10 @@ URI: [nexus:BaseAi](https://ibm.github.io/risk-atlas-nexus/ontology/BaseAi)
 
 
 
-    BaseAi --> "0..1" Organization : producer
-    click Organization href "../Organization"
+
+        BaseAi --> "0..1" Organization : producer
+        click Organization href "../Organization"
+
 
 
       BaseAi : url

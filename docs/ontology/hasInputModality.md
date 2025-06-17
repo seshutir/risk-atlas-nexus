@@ -10,8 +10,7 @@ _A relationship indicating the input modalities supported by an AI component. Ex
 
 
 URI: [nexus:hasInputModality](https://ibm.github.io/risk-atlas-nexus/ontology/hasInputModality)
-
-
+Alias: hasInputModality
 
 <!-- no inheritance hierarchy -->
 

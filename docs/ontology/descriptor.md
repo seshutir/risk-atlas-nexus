@@ -10,8 +10,7 @@ _Annotates whether an AI risk is a traditional risk, specific to or amplified by
 
 
 URI: [nexus:descriptor](https://ibm.github.io/risk-atlas-nexus/ontology/descriptor)
-
-
+Alias: descriptor
 
 <!-- no inheritance hierarchy -->
 

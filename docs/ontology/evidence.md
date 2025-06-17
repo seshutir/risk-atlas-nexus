@@ -10,8 +10,7 @@ _Evidence provides a source (typical a chunk, paragraph or link) describing wher
 
 
 URI: [nexus:evidence](https://ibm.github.io/risk-atlas-nexus/ontology/evidence)
-
-
+Alias: evidence
 
 <!-- no inheritance hierarchy -->
 

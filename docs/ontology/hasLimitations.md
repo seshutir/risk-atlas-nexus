@@ -10,8 +10,7 @@ _Limitations in evaluating or addressing risks, such as gaps in demographic cove
 
 
 URI: [nexus:hasLimitations](https://ibm.github.io/risk-atlas-nexus/ontology/hasLimitations)
-
-
+Alias: hasLimitations
 
 <!-- no inheritance hierarchy -->
 

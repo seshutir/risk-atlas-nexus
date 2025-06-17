@@ -10,8 +10,7 @@ _A list of AI modalities_
 
 
 URI: [nexus:modalities](https://ibm.github.io/risk-atlas-nexus/ontology/modalities)
-
-
+Alias: modalities
 
 <!-- no inheritance hierarchy -->
 

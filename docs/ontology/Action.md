@@ -36,8 +36,10 @@ URI: [nexus:Action](https://ibm.github.io/risk-atlas-nexus/ontology/Action)
 
 
 
-    Action --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        Action --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       Action : hasRelatedRisk
@@ -45,8 +47,10 @@ URI: [nexus:Action](https://ibm.github.io/risk-atlas-nexus/ontology/Action)
 
 
 
-    Action --> "*" Risk : hasRelatedRisk
-    click Risk href "../Risk"
+
+        Action --> "*" Risk : hasRelatedRisk
+        click Risk href "../Risk"
+
 
 
       Action : id
@@ -56,8 +60,10 @@ URI: [nexus:Action](https://ibm.github.io/risk-atlas-nexus/ontology/Action)
 
 
 
-    Action --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
-    click RiskTaxonomy href "../RiskTaxonomy"
+
+        Action --> "0..1" RiskTaxonomy : isDefinedByTaxonomy
+        click RiskTaxonomy href "../RiskTaxonomy"
+
 
 
       Action : name

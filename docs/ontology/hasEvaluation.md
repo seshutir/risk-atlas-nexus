@@ -10,8 +10,7 @@ _A relationship indicating that an entity has an AI evaluation result._
 
 
 URI: [dqv:hasQualityMeasurement](https://www.w3.org/TR/vocab-dqv/hasQualityMeasurement)
-
-
+Alias: hasEvaluation
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [dqv:hasQualityMeasurement](https://www.w3.org/TR/vocab-dqv/hasQualityMeasu
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

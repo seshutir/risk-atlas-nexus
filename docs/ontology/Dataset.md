@@ -34,8 +34,10 @@ URI: [schema:Dataset](http://schema.org/Dataset)
 
 
 
-    Dataset --> "*" Documentation : hasDocumentation
-    click Documentation href "../Documentation"
+
+        Dataset --> "*" Documentation : hasDocumentation
+        click Documentation href "../Documentation"
+
 
 
       Dataset : hasLicense
@@ -43,8 +45,10 @@ URI: [schema:Dataset](http://schema.org/Dataset)
 
 
 
-    Dataset --> "0..1" License : hasLicense
-    click License href "../License"
+
+        Dataset --> "0..1" License : hasLicense
+        click License href "../License"
+
 
 
       Dataset : id
@@ -56,8 +60,10 @@ URI: [schema:Dataset](http://schema.org/Dataset)
 
 
 
-    Dataset --> "0..1" Organization : provider
-    click Organization href "../Organization"
+
+        Dataset --> "0..1" Organization : provider
+        click Organization href "../Organization"
+
 
 
       Dataset : url

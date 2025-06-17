@@ -10,8 +10,7 @@ _The languages included in the dataset used by the benchmark (e.g., English, mul
 
 
 URI: [nexus:hasLanguages](https://ibm.github.io/risk-atlas-nexus/ontology/hasLanguages)
-
-
+Alias: hasLanguages
 
 <!-- no inheritance hierarchy -->
 

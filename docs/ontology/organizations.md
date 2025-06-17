@@ -10,8 +10,7 @@ _A list of organizations_
 
 
 URI: [nexus:organizations](https://ibm.github.io/risk-atlas-nexus/ontology/organizations)
-
-
+Alias: organizations
 
 <!-- no inheritance hierarchy -->
 

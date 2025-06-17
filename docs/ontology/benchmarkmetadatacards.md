@@ -10,8 +10,7 @@ _A list of AI evaluation benchmark metadata cards_
 
 
 URI: [nexus:benchmarkmetadatacards](https://ibm.github.io/risk-atlas-nexus/ontology/benchmarkmetadatacards)
-
-
+Alias: benchmarkmetadatacards
 
 <!-- no inheritance hierarchy -->
 

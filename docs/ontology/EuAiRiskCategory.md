@@ -8,11 +8,11 @@ URI: [EuAiRiskCategory](EuAiRiskCategory.md)
 
 | Value | Meaning | Description |
 | --- | --- | --- |
-| EXCLUDED | "Excluded" |  |
-| PROHIBITED | "Prohibited" |  |
-| HIGH_RISK_EXCEPTION | "High-Risk Exception" |  |
-| HIGH_RISK | "High Risk" |  |
-| LIMITED_OR_LOW_RISK | "Limited or Low Risk" |  |
+| EXCLUDED | None | Excluded |
+| PROHIBITED | None | Prohibited |
+| HIGH_RISK_EXCEPTION | None | High-Risk Exception |
+| HIGH_RISK | None | High Risk |
+| LIMITED_OR_LOW_RISK | None | Limited or Low Risk |
 
 
 
@@ -49,22 +49,26 @@ URI: [EuAiRiskCategory](EuAiRiskCategory.md)
 ## LinkML Source
 
 <details>
-
 ```yaml
 name: EuAiRiskCategory
 from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 rank: 1000
 permissible_values:
   EXCLUDED:
-    text: Excluded
+    text: EXCLUDED
+    description: Excluded
   PROHIBITED:
-    text: Prohibited
+    text: PROHIBITED
+    description: Prohibited
   HIGH_RISK_EXCEPTION:
-    text: High-Risk Exception
+    text: HIGH_RISK_EXCEPTION
+    description: High-Risk Exception
   HIGH_RISK:
-    text: High Risk
+    text: HIGH_RISK
+    description: High Risk
   LIMITED_OR_LOW_RISK:
-    text: Limited or Low Risk
+    text: LIMITED_OR_LOW_RISK
+    description: Limited or Low Risk
 
 ```
 </details>

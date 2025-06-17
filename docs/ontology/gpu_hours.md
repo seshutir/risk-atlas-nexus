@@ -10,8 +10,7 @@ _GPU consumption in terms of hours_
 
 
 URI: [nexus:gpu_hours](https://ibm.github.io/risk-atlas-nexus/ontology/gpu_hours)
-
-
+Alias: gpu_hours
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:gpu_hours](https://ibm.github.io/risk-atlas-nexus/ontology/gpu_hours
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

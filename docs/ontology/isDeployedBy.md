@@ -10,8 +10,7 @@ _A relationship indicating that an entity has been deployed by an organization._
 
 
 URI: [nexus:isDeployedBy](https://ibm.github.io/risk-atlas-nexus/ontology/isDeployedBy)
-
-
+Alias: isDeployedBy
 
 <!-- no inheritance hierarchy -->
 

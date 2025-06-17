@@ -10,8 +10,7 @@ _A property indicating the number of parameters in a LLM._
 
 
 URI: [nexus:numParameters](https://ibm.github.io/risk-atlas-nexus/ontology/numParameters)
-
-
+Alias: numParameters
 
 <!-- no inheritance hierarchy -->
 

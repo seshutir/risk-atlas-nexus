@@ -10,8 +10,7 @@ _A list of AI tasks_
 
 
 URI: [nexus:aitasks](https://ibm.github.io/risk-atlas-nexus/ontology/aitasks)
-
-
+Alias: aitasks
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _A list of AI risks_
 
 
 URI: [nexus:risks](https://ibm.github.io/risk-atlas-nexus/ontology/risks)
-
-
+Alias: risks
 
 <!-- no inheritance hierarchy -->
 

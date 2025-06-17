@@ -10,8 +10,7 @@ _A list of AI risk groups_
 
 
 URI: [nexus:riskgroups](https://ibm.github.io/risk-atlas-nexus/ontology/riskgroups)
-
-
+Alias: riskgroups
 
 <!-- no inheritance hierarchy -->
 

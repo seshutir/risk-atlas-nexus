@@ -3,15 +3,14 @@
 # Slot: detectsRiskConcept
 
 
-_The property airo:detectsRiskConcept indicates the control used for detecting risks, risk sources,  consequences, and impacts._
+_The property airo:detectsRiskConcept indicates the control used for detecting risks, risk sources, consequences, and impacts._
 
 
 
 
 
 URI: [nexus:detectsRiskConcept](https://ibm.github.io/risk-atlas-nexus/ontology/detectsRiskConcept)
-
-
+Alias: detectsRiskConcept
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:detectsRiskConcept](https://ibm.github.io/risk-atlas-nexus/ontology/
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 | [RiskControl](RiskControl.md) | A measure that maintains and/or modifies risk (and risk concepts) |  no  |
+| [Risk](Risk.md) | The state of uncertainty associated with an AI system, that has the potential... |  no  |
 
 
 
@@ -75,7 +74,7 @@ URI: [nexus:detectsRiskConcept](https://ibm.github.io/risk-atlas-nexus/ontology/
 ```yaml
 name: detectsRiskConcept
 description: The property airo:detectsRiskConcept indicates the control used for detecting
-  risks, risk sources,  consequences, and impacts.
+  risks, risk sources, consequences, and impacts.
 from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 exact_mappings:
 - airo:detectsRiskConcept

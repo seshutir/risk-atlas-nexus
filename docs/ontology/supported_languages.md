@@ -10,8 +10,7 @@ _A list of languages, expressed as ISO two letter codes. For example, 'jp, fr, e
 
 
 URI: [nexus:supported_languages](https://ibm.github.io/risk-atlas-nexus/ontology/supported_languages)
-
-
+Alias: supported_languages
 
 <!-- no inheritance hierarchy -->
 

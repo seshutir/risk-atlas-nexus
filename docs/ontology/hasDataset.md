@@ -10,8 +10,7 @@ _A relationship to datasets that are used._
 
 
 URI: [nexus:hasDataset](https://ibm.github.io/risk-atlas-nexus/ontology/hasDataset)
-
-
+Alias: hasDataset
 
 <!-- no inheritance hierarchy -->
 
@@ -24,8 +23,8 @@ URI: [nexus:hasDataset](https://ibm.github.io/risk-atlas-nexus/ontology/hasDatas
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [Questionnaire](Questionnaire.md) | A questionnaire groups questions |  no  |
-| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 | [Question](Question.md) | An evaluation where a question has to be answered |  no  |
+| [AiEval](AiEval.md) | An AI Evaluation, e |  no  |
 
 
 

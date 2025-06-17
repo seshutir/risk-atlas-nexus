@@ -10,8 +10,7 @@ _The total length, in bytes, of an AI model's context window._
 
 
 URI: [nexus:contextWindowSize](https://ibm.github.io/risk-atlas-nexus/ontology/contextWindowSize)
-
-
+Alias: contextWindowSize
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _Some explanation about the concern related to an AI risk_
 
 
 URI: [nexus:concern](https://ibm.github.io/risk-atlas-nexus/ontology/concern)
-
-
+Alias: concern
 
 <!-- no inheritance hierarchy -->
 

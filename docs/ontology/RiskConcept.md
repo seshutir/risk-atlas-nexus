@@ -49,8 +49,10 @@ URI: [airo:RiskConcept](https://w3id.org/airo#RiskConcept)
 
 
 
-    RiskConcept --> "*" RiskControl : isDetectedBy
-    click RiskControl href "../RiskControl"
+
+        RiskConcept --> "*" RiskControl : isDetectedBy
+        click RiskControl href "../RiskControl"
+
 
 
       RiskConcept : name

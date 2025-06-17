@@ -10,8 +10,7 @@ _A list of licenses_
 
 
 URI: [nexus:licenses](https://ibm.github.io/risk-atlas-nexus/ontology/licenses)
-
-
+Alias: licenses
 
 <!-- no inheritance hierarchy -->
 

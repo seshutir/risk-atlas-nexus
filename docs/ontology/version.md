@@ -10,8 +10,7 @@ _The version of the entity embodied by a specified resource._
 
 
 URI: [schema:version](http://schema.org/version)
-
-
+Alias: version
 
 <!-- no inheritance hierarchy -->
 

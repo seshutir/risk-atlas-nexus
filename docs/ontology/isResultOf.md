@@ -10,8 +10,7 @@ _A relationship indicating that an entity is the result of an AI evaluation._
 
 
 URI: [dqv:isMeasurementOf](https://www.w3.org/TR/vocab-dqv/isMeasurementOf)
-
-
+Alias: isResultOf
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _A list of AI models_
 
 
 URI: [nexus:aimodels](https://ibm.github.io/risk-atlas-nexus/ontology/aimodels)
-
-
+Alias: aimodels
 
 <!-- no inheritance hierarchy -->
 

@@ -10,8 +10,7 @@ _The evaluation techniques applied within the benchmark._
 
 
 URI: [nexus:hasMethods](https://ibm.github.io/risk-atlas-nexus/ontology/hasMethods)
-
-
+Alias: hasMethods
 
 <!-- no inheritance hierarchy -->
 

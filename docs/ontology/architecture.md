@@ -10,8 +10,7 @@ _A description of the architecture of an AI such as 'Decoder-only'._
 
 
 URI: [nexus:architecture](https://ibm.github.io/risk-atlas-nexus/ontology/architecture)
-
-
+Alias: architecture
 
 <!-- no inheritance hierarchy -->
 
@@ -23,8 +22,8 @@ URI: [nexus:architecture](https://ibm.github.io/risk-atlas-nexus/ontology/archit
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [AiModel](AiModel.md) | A base AI Model class |  no  |
 | [LargeLanguageModel](LargeLanguageModel.md) | A large language model (LLM) is an AI model which supports a range of languag... |  no  |
+| [AiModel](AiModel.md) | A base AI Model class |  no  |
 
 
 

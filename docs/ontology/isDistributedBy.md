@@ -10,8 +10,7 @@ _A relationship indicating that an entity has been distributed by an organizatio
 
 
 URI: [nexus:isDistributedBy](https://ibm.github.io/risk-atlas-nexus/ontology/isDistributedBy)
-
-
+Alias: isDistributedBy
 
 <!-- no inheritance hierarchy -->
 
