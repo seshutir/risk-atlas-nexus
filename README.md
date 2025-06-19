@@ -156,7 +156,7 @@ pip install -e ".[rits]"
 
 ## Compatibility
 
-- View the [changelog](CHANGELOG.md).
+- View the [releases changelog](https://github.com/IBM/risk-atlas-nexus/releases).
 
 ## Referencing the project
 
