@@ -141,7 +141,7 @@ pip install -e ".[rits]"
 ```
 
 ## Compatibility
-- View the [changelog](https://github.com/ibm/risk-atlas-nexus/CHANGELOG.md).
+- View the [releases changelog](https://github.com/IBM/risk-atlas-nexus/releases).
 
 ## Referencing the project
 If you use Risk Atlas Nexus in your projects, please consider citing the following:
