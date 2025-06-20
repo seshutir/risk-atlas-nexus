@@ -486,7 +486,7 @@ class RiskAtlasNexus:
         cls,
         usecases: List[str],
         inference_engine: InferenceEngine,
-        taxonomy: Optional[str] = "ibm-risk-atlas",
+        taxonomy: Optional[str] = None,
         cot_examples: Optional[Dict[str, List]] = None,
         max_risk: Optional[int] = None,
     ) -> List[List[Risk]]:
@@ -498,7 +498,7 @@ class RiskAtlasNexus:
             inference_engine (InferenceEngine):
                 An LLM inference engine to infer risks from the usecases.
             taxonomy (str, optional):
-                The string label for a taxonomy. Default to "ibm-risk-atlas".
+                The string label for a taxonomy.
             cot_examples (Dict[str, List], optional):
                 The Chain of Thought (CoT) examples to use in the risk identification.
                 The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
@@ -545,22 +545,34 @@ class RiskAtlasNexus:
         # retrieve the default cot examples from the master. If no examples exist in the master,
         # set it as None.
         RISK_IDENTIFICATION_COT = load_resource("risk_generation_cot.json")
-        processed_examples = (
-            cot_examples and cot_examples.get(taxonomy, None)
-        ) or RISK_IDENTIFICATION_COT.get(taxonomy, None)
+        processed_examples = None
+
+        if cot_examples:
+            processed_examples = cot_examples.get(taxonomy, None)
+        elif taxonomy:
+            processed_examples = RISK_IDENTIFICATION_COT.get(taxonomy, None)
+
+        # if not providing taxonomy, set to IBM AI risk atlas
+        if taxonomy is None:
+            logger.warning(
+                f"<RAN47375G12W>",
+                f"Taxonomy was not provided, defaulting to ibm-ai-risk-atlas."
+            )
+
+        set_taxonomy = taxonomy or "ibm-ai-risk-atlas"
 
         # Set prompt builder based on whether the CoT examples are available.
         if processed_examples is None:
             logger.warning(
-                f"<RAN47275F12W>",
-                f"Warning: Chain of Thought (CoT) examples were not provided, or do not exist in the master for the "
-                f"taxonomy type: {taxonomy}. The API will use the Zero shot method. To improve the accuracy "
+            f"<RAN47275F12W>",
+                f"Warning: Chain of Thought (CoT) examples were not provided, or do not exist in the master for this "
+                f"taxonomy. The API will use the Zero shot method. To improve the accuracy "
                 f"of risk identification, please provide CoT examples in `cot_examples` when calling this API. You may "
                 f"also consider raising an issue to permanently add these examples to the Risk Atlas Nexus master."
-            )
+        )
 
         risk_detector = GenericRiskDetector(
-            risks=cls._risk_explorer.get_all_risks(taxonomy),
+            risks=cls._risk_explorer.get_all_risks(set_taxonomy),
             inference_engine=inference_engine,
             cot_examples=processed_examples,
             max_risk=max_risk,
