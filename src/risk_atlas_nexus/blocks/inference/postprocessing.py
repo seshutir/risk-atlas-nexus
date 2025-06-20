@@ -53,7 +53,7 @@ class ListOfStr:
         text = str(text.strip(JSON_STRIP_CHARS).replace("'", '"'))
 
         # Remove newlines characters inside the returned value
-        text = text.replace("\n", "")
+        text = text.replace("\n", " ")
 
         if isinstance(text, str):
             try:

@@ -230,7 +230,7 @@ class TestLibrary(TestCaseBase):
         assert all(isinstance(i, RiskIncident) for i in rris)
         self.assertIs(len(rris), 1)
         incident = rris[0]
-        self.assertEquals(incident.id, "test-ri")
+        self.assertEqual(incident.id, "test-ri")
         self.assertIn("atlas-data-bias", incident.refersToRisk)
 
     def test_get_all_evaluations(self):
@@ -258,7 +258,7 @@ class TestLibrary(TestCaseBase):
         assert all(isinstance(i, AiEval) for i in evs)
         self.assertIs(len(evs), 1)
         ev = evs[0]
-        self.assertEquals(ev.id, "test-eval1")
+        self.assertEqual(ev.id, "test-eval1")
         self.assertIn("atlas-data-bias", ev.hasRelatedRisk)
 
     def test_get_all_benchmark_metadata_cards(self):
