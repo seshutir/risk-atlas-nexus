@@ -157,12 +157,12 @@ class RiskMapper(RiskMappingBase):
             risk_detector = GenericRiskDetector(
                 risks=existing_risks,
                 inference_engine=self.inference_engine,
-                cot_examples = None
+                cot_examples=None,
             )
 
             rls = risk_detector.detect(usecases)
 
-            for(
+            for (
                 index,
                 rl,
             ) in enumerate(rls):
