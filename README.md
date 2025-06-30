@@ -4,32 +4,30 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://www.apache.org/licenses/LICENSE-2.0) ![main branch](https://github.com/IBM/risk-atlas-nexus/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main) [![](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/) <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
-👉 (Feb-2025) Our new [HF spaces demo site](https://huggingface.co/spaces/ibm/risk-atlas-nexus) is available!
+👉 (Jun-2025) Our [HF spaces demo site](https://huggingface.co/spaces/ibm/risk-atlas-nexus) has been updated to show related benchmarks!
+
+👉 (Jun-2025) The [demo projects repository](https://github.com/ibm/risk-atlas-nexus-demos) showcases implementations of Risk Atlas Nexus.
 
 ## Overview
 
-Risk Atlas Nexus aims to provide tooling to help bring together disparate resources related to governance of foundation models. We support a community driven approach to curating and cataloguing resources such as datasets, benchmarks and mitigations. Our goal is to turn abstract risk definitions into actionable workflows that streamline AI governance processes. By connecting fragmented resources, Risk Atlas Nexus seeks to fill a critical gap in AI governance, enabling stakeholders to build more robust, transparent, and accountable systems. Risk Atlas Nexus builds on the [IBM AI Risk Atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas) making this educational resource a nexus of governance assets and tooling. An AI System's Knowledge Graph is used to provide a unified structure that links and contextualize the very heterogeneous domain data.
+Risk Atlas Nexus aims to provide tooling to help bring together resources related to governance of foundation models. We support a community-driven approach to curating and cataloguing resources such as datasets, benchmarks and mitigations. Our goal is to turn abstract risk definitions into actionable workflows that streamline AI governance processes. By connecting fragmented resources, Risk Atlas Nexus seeks to fill a critical gap in AI governance, enabling stakeholders to build more robust, transparent, and accountable systems. Risk Atlas Nexus builds on the [IBM AI Risk Atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas) making this educational resource a nexus of governance assets and tooling. An AI System's Knowledge Graph is used to provide a unified structure that links and contextualize the very heterogeneous domain data.
 
 Our intention is to create a starting point for an open AI Systems ontology whose focus is on risk and that the community can extend and enhance. This ontology serves as the foundation that unifies innovation and tooling in the AI risk space. By lowering the barrier to entry for developers, it fosters a governance-first approach to AI solutions, while also inviting the broader community to contribute their own tools and methodologies to expand its impact.
 
 ## Features
 
-- 🏗️📊 An ontology has been provided, that combines the AI risk view (taxonomies, risks, actions) with an AI model view (AI systems, AI models, model evaluations) into one coherent schema
-- 📚⚠️ AI Risks were collected from IBM AI Risk Atlas, IBM Granite Guardian, MIT AI Risk Repository, NIST Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, the AI Risk Taxonomy (AIR 2024), the AILuminate Benchmark, Credo's Unified Control Framework, and OWASP Top 10 for Large Language Model Applications
-- 🔗📌 Mappings are proposed between the taxonomies and between risks and actions
-- 🐍🔍 Use the python library methods to quickly explore available risks, relations and actions
-- 🚨🧐 Use the python library methods to detect potential risks in your usecase
-- 📤📈 Download an exported graph populated with data instances
-- ✨📝 Example use-case of auto-assistance in compliance questionnaires using CoT examples and Risk Atlas Nexus
-- 🔧↔️ Tooling to convert the LinkML schema and instance data into a Cypher representation to populate a graph database
+- 🏗️ An ontology has been provided, that combines the AI risk view (taxonomies, risks, actions) with an AI model view (AI systems, AI models, model evaluations) into one coherent schema
+- 📚 AI Risks were collected from IBM AI Risk Atlas, IBM Granite Guardian, MIT AI Risk Repository, NIST Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, the AI Risk Taxonomy (AIR 2024), the AILuminate Benchmark, Credo's Unified Control Framework, and OWASP Top 10 for Large Language Model Applications
+- 🔗 Mappings are proposed between the taxonomies and between risks and actions
+- 🐍 Use the python library methods to quickly explore available risks, relations and actions
+- 🚨 Use the python library methods to detect potential risks in your usecase
+- 📤 Download an exported graph populated with data instances
+- ✨ Example use-case of auto-assistance in compliance questionnaires using CoT examples and Risk Atlas Nexus
+- 🔧 Tooling to convert the LinkML schema and instance data into a Cypher representation to populate a graph database
 
 ## Architecture
 
 ![Architecture](https://github.com/IBM/risk-atlas-nexus/blob/main/resources/images/architecture.png?raw=true)
-
-### Coming soon
-
--
 
 ## Links
 
@@ -44,7 +42,7 @@ Our intention is to create a starting point for an open AI Systems ontology whos
   - [Auto assist questionnaire](docs/examples/notebooks/autoassist_questionnaire.ipynb) Auto-fill questionnaire using Chain of Thought or Few-Shot Examples
   - [AI Tasks identification](docs/examples/notebooks/ai_tasks_identification.ipynb) Uncover ai tasks related to your usecase
   - [AI Domain identification](docs/examples/notebooks/domain_identification.ipynb) Uncover ai domain from your usecase
-  - [Risk Categorization](docs/examples/notebooks/risk_categorization.ipynb) Assess and categorize the severity of risks associated with an AI system usecase.
+  - [Risk Categorization](docs/examples/notebooks/risk_categorization.ipynb) Assess and categorize the severity of risks associated with an AI system usecase. Prompt templates are used with thanks to https://doi.org/10.48550/arXiv.2407.12454.
 - **Additional Resources:**
   - [IBM AI Risk Atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas)
   - [Usage Governance Advisor: From Intent to AI Governance](https://arxiv.org/abs/2412.01957)
@@ -176,7 +174,7 @@ If you use Risk Atlas Nexus in your projects, please consider citing the followi
 
 ## License
 
-Risk Atlas Nexus is under Apache 2.0 license.
+Risk Atlas Nexus is provided under Apache 2.0 license.
 
 ## Contributing
 
@@ -190,7 +188,9 @@ Tip: Use the makefile provided to regenerate artifacts provided in the repositor
 ## Find out more
 
 - Try out a quick demo at the [HF spaces demo site](https://huggingface.co/spaces/ibm/risk-atlas-nexus)
-- [IBM's AI Risk Atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas)
+- Read the publication [AI Risk Atlas: Taxonomy and Tooling for Navigating AI Risks and Resources](https://arxiv.org/pdf/2503.05780)
+- Explore [IBM's AI Risk Atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas) on the IBM documentation site
+- View the [demo projects repository](https://github.com/ibm/risk-atlas-nexus-demos) showcasing implementations of Risk Atlas Nexus.
 - Read the the IBM AI Ethics Board publication [Foundation models: Opportunities, risks and mitigations](https://www.ibm.com/downloads/documents/us-en/10a99803d8afd656) which goes into more detail about the risk taxonomy, and describes the point of view of IBM on the ethics of foundation models.
 - ['Usage Governance Advisor: From Intent to AI Governance'](https://arxiv.org/abs/2412.01957) presents a system for semi-structured governance information, identifying and prioritising risks according to the intended use case, recommending appropriate benchmarks and risk assessments and proposing mitigation strategies and actions.
 
