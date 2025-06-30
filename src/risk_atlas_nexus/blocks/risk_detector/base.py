@@ -26,11 +26,11 @@ RISK_IDENTIFICATION_COT_SCHEMA = load_resource("risk_generation_cot_schema.json"
 class RiskDetector(ABC):
 
     def __init__(
-            self,
-            risks: List[Risk],
-            inference_engine: InferenceEngine,
-            cot_examples: Optional[Dict[str, List]] = None,
-            max_risk: Optional[int] = None,
+        self,
+        risks: List[Risk],
+        inference_engine: InferenceEngine,
+        cot_examples: Optional[Dict[str, List]] = None,
+        max_risk: Optional[int] = None,
     ):
         self.inference_engine = inference_engine
         self._risks = risks

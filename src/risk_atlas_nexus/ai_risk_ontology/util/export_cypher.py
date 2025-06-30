@@ -113,9 +113,9 @@ def is_relationship(
     linkml_types: list[str],
 ) -> bool:
     class_slots = schema_view.class_induced_slots(linkml_class)
-    assert linkml_slot in [slot.name for slot in class_slots], (
-        f"{linkml_slot} is not a known slot for class {linkml_class}."
-    )
+    assert linkml_slot in [
+        slot.name for slot in class_slots
+    ], f"{linkml_slot} is not a known slot for class {linkml_class}."
     slot_def = [slot for slot in class_slots if slot.name == linkml_slot].pop()
     if slot_def.range not in linkml_types:
         return True
