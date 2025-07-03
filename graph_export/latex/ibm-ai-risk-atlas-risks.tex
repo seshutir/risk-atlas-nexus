@@ -1,27 +1,7 @@
-\documentclass[a4paper,12pt]{article}
-\usepackage{xcolor}
-\usepackage[skins]{tcolorbox}%
-\usepackage{tcolorbox}
-\usepackage{hyperref}
-\newtcolorbox[auto counter, number within=section]{definitionbox}[2][]{%
-colframe=black!50,
-colback=black!5,
-coltitle=white,
-fonttitle=\bfseries,
-title={#2},
-sharp corners=south,
-enhanced,
-before upper={\noindent},
-}
-\begin{document}
-\section{IBM AI Risk Atlas}
-Explore this atlas to understand some of the risks of working with generative AI, foundation models, and machine learning models. Risks are categorized with one of these tags:
-\begin{itemize}
-\item Traditional AI risks (applies to traditional models as well as generative AI)
-\item Risks amplified by generative AI (might also apply to traditional models)
-\item New risks specifically associated with generative AI
-\end{itemize}
-\subsection*{AI Risk Atlas Definitions}
+\section{AI Risk Atlas Definitions}
+The below is a catalog of potential risks when working with generative AI, foundation models, and machine learning models.
+
+
 \begin{definitionbox}{Evasion attack}
 Evasion attacks attempt to make a model output incorrect results by slightly perturbing the input data sent to the trained model.\newline\newline
 \textbf{Concern: }Evasion attacks alter model behavior, usually to benefit the attacker.\newline\newline

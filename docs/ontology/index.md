@@ -67,7 +67,7 @@ Name: ai-risk-ontology
 | [aimodels](aimodels.md) | A list of AI models |
 | [aitasks](aitasks.md) | A list of AI tasks |
 | [architecture](architecture.md) | A description of the architecture of an AI such as 'Decoder-only' |
-| [author](author.md) | The author or authors of the incident report |
+| [author](author.md) | The author or authors of the documentation |
 | [benchmarkmetadatacards](benchmarkmetadatacards.md) | A list of AI evaluation benchmark metadata cards |
 | [bestValue](bestValue.md) | Annotation of the best possible result of the evaluation |
 | [broadMatch](broadMatch.md) | The property is used to state a hierarchical mapping link between two concept... |

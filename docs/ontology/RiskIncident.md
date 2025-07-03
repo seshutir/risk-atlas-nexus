@@ -263,8 +263,8 @@ attributes:
     name: author
     description: The author or authors of the incident report
     from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai_risk
-    rank: 1000
     domain_of:
+    - Documentation
     - RiskIncident
   source_uri:
     name: source_uri
@@ -293,10 +293,10 @@ attributes:
     name: author
     description: The author or authors of the incident report
     from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai_risk
-    rank: 1000
     alias: author
     owner: RiskIncident
     domain_of:
+    - Documentation
     - RiskIncident
     range: string
   source_uri:

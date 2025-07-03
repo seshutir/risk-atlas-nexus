@@ -3,11 +3,6 @@
 # Slot: author
 
 
-_The author or authors of the incident report_
-
-
-
-
 
 URI: [nexus:author](https://ibm.github.io/risk-atlas-nexus/ontology/author)
 Alias: author
@@ -22,6 +17,7 @@ Alias: author
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [Documentation](Documentation.md) | Documented information about a concept or other topic(s) of interest |  no  |
 | [RiskIncident](RiskIncident.md) | An event occuring or occured which is a realised or materialised risk |  no  |
 
 
@@ -46,13 +42,6 @@ Alias: author
 
 
 
-### Schema Source
-
-
-* from schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
-
-
-
 
 ## Mappings
 
@@ -69,12 +58,9 @@ Alias: author
 <details>
 ```yaml
 name: author
-description: The author or authors of the incident report
-from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
-rank: 1000
 alias: author
-owner: RiskIncident
 domain_of:
+- Documentation
 - RiskIncident
 range: string
 
