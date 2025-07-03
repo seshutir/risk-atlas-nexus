@@ -5,3 +5,4 @@
 - [Auto assist questionnaire](notebooks/autoassist_questionnaire.ipynb) Auto-fill questionnaire using Chain of Thought or Few-Shot Examples.
 - [AI Domain identification](notebooks/domain_identification.ipynb) Uncover AI domain from your usecase
 - [Risk Categorization](notebooks/risk_categorization.ipynb) Assess and categorize the severity of risks associated with an AI system usecase.
+- [Crosswalk](notebooks/generate_crosswalk.ipynb) An example of generating crosswalk information between risks of two different taxonomies.
