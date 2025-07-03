@@ -59,6 +59,10 @@ classes:
     description: Documented information about a concept or other topic(s) of interest.
     slots:
       - hasLicense
+    attributes:
+      author:
+        name: author
+        description: The author or authors of the documentation
 
   Fact:
     abstract: true

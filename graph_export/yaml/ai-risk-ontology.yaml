@@ -39,6 +39,13 @@ licenses:
     the creator. The license allows for commercial use.
   url: https://creativecommons.org/licenses/by/4.0/
   dateCreated: 2013-11-25
+- id: license-cc-by-nc-4.0
+  name: Creative Commons Attribution-NonCommercial 4.0 International
+  description: This license enables reusers to distribute, remix, adapt, and build
+    upon the material in any medium or format, so long as attribution is given to
+    the creator. The license does not allow for commercial use.
+  url: https://creativecommons.org/licenses/by-nc/4.0/
+  dateCreated: 2013-11-25
 - id: Creative Commons license-cc-by-sa-4.0
   name: Attribution-ShareAlike 4.0 International
   description: This license enables reusers to distribute, remix, adapt, and build

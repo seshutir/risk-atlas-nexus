@@ -23,6 +23,8 @@ URI: [airo:Documentation](https://w3id.org/airo#Documentation)
       Entity <|-- Documentation
         click Entity href "../Entity"
 
+      Documentation : author
+
       Documentation : dateCreated
 
       Documentation : dateModified
@@ -64,6 +66,7 @@ URI: [airo:Documentation](https://w3id.org/airo#Documentation)
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [hasLicense](hasLicense.md) | 0..1 <br/> [License](License.md) | Indicates licenses associated with a resource | direct |
+| [author](author.md) | 0..1 <br/> [String](String.md) | The author or authors of the documentation | direct |
 | [id](id.md) | 1 <br/> [String](String.md) | A unique identifier to this instance of the model element | [Entity](Entity.md) |
 | [name](name.md) | 0..1 <br/> [String](String.md) | A text name of this instance | [Entity](Entity.md) |
 | [description](description.md) | 0..1 <br/> [String](String.md) | The description of an entity | [Entity](Entity.md) |
@@ -142,6 +145,15 @@ from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 is_a: Entity
 slots:
 - hasLicense
+attributes:
+  author:
+    name: author
+    description: The author or authors of the documentation
+    from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/common
+    rank: 1000
+    domain_of:
+    - Documentation
+    - RiskIncident
 class_uri: airo:Documentation
 
 ```
@@ -156,6 +168,17 @@ description: Documented information about a concept or other topic(s) of interes
 from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/ai-risk-ontology
 is_a: Entity
 attributes:
+  author:
+    name: author
+    description: The author or authors of the documentation
+    from_schema: https://ibm.github.io/risk-atlas-nexus/ontology/common
+    rank: 1000
+    alias: author
+    owner: Documentation
+    domain_of:
+    - Documentation
+    - RiskIncident
+    range: string
   hasLicense:
     name: hasLicense
     description: Indicates licenses associated with a resource
