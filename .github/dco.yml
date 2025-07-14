@@ -1,0 +1,4 @@
+# DCO bot: https://github.com/probot/dco
+# for more details.
+require:
+  members: false
