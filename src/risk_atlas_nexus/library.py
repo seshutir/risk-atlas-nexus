@@ -500,9 +500,9 @@ class RiskAtlasNexus:
             taxonomy (str, optional):
                 The string label for a taxonomy.
             cot_examples (Dict[str, List], optional):
-                The Chain of Thought (CoT) examples to use in Few-Shot risk identification. If this parameter is None, the API defaults to a Zero-Shot method.
-                The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
-                Assign the ID of the taxonomy you wish to use as the key for CoT examples.
+                If the user wants to improve risk identification via a Few-shot approach, `cot_examples` can be
+                provided with the desired taxonomy as key. Please follow the example template at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
+                If the `cot_examples` is omitted, the API default to a Zero-Shot approach.
             max_risk (int, optional):
                 The maximum number of risks to extract. Pass None to allow the inference engine to determine the number of risks. Defaults to None.
 
@@ -553,7 +553,7 @@ class RiskAtlasNexus:
         processed_examples = cot_examples and cot_examples.get(set_taxonomy, None)
         if processed_examples:
             logger.info(
-                f"Chain of Thought (CoT) examples were identified for the taxonomy: {set_taxonomy}. The API will employ the Few-Shot method. To improve the accuracy of risk identification, please provide relevant CoT examples.",
+                f"Chain of Thought (CoT) examples were identified for the taxonomy: {set_taxonomy}. The API will employ the Few-Shot method.",
             )
 
         risk_detector = GenericRiskDetector(
