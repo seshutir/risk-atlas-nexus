@@ -1,9 +1,9 @@
 import os
-from typing import Any, Dict, List, Union
+from typing import Dict, List, Union
 
 import httpx
 from dotenv import load_dotenv
-from openai import DEFAULT_TIMEOUT, NotFoundError
+from openai import NotFoundError
 
 from risk_atlas_nexus.blocks.inference.base import InferenceEngine
 from risk_atlas_nexus.blocks.inference.params import (
