@@ -32,7 +32,7 @@ class GenericRiskDetector(RiskDetector):
         json_schema["items"]["enum"] = [risk.name for risk in self._risks]
 
         # Invoke inference service
-        inference_response: List[TextGenerationInferenceOutput] = (
+        inference_responses: List[TextGenerationInferenceOutput] = (
             self.inference_engine.generate(
                 prompts,
                 response_format=json_schema,
@@ -41,11 +41,15 @@ class GenericRiskDetector(RiskDetector):
         )
 
         return [
-            list(
-                filter(
-                    lambda risk: risk.name in inference.prediction,
-                    self._risks,
+            (
+                list(
+                    filter(
+                        lambda risk: risk.name in inference_response.prediction,
+                        self._risks,
+                    )
                 )
+                if inference_response.prediction
+                else []
             )
-            for inference in inference_response
+            for inference_response in inference_responses
         ]
