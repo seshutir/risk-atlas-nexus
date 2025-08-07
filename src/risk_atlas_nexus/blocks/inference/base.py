@@ -36,8 +36,8 @@ class InferenceEngine(ABC):
         concurrency_limit: int = 10,
     ):
         self.model_name_or_path = model_name_or_path
-        self.parameters = self._check_if_parameters_are_valid(parameters)
-        self.credentials = self.prepare_credentials(credentials if credentials else {})
+        self.parameters = self._check_if_parameters_are_valid(parameters or {})
+        self.credentials = self.prepare_credentials(credentials or {})
         self.client = self.create_client(self.credentials)
         self.concurrency_limit = concurrency_limit
 
@@ -64,9 +64,8 @@ class InferenceEngine(ABC):
                 raise Exception(
                     f"Invalid parameters found: {invalid_params}. {self._inference_engine_type} inference engine only supports {list(self._inference_engine_parameter_class.__annotations__)}"
                 )
-            return parameters
-        else:
-            return {}
+
+        return parameters
 
     def _to_openai_format(self, prompt: Union[OpenAIChatCompletionMessageParam, str]):
         if isinstance(prompt, str):
