@@ -74,6 +74,14 @@ class VLLMInferenceEngine(InferenceEngine):
                 max_model_len=4098,
             )
 
+    def ping(self):
+        if self.model_name_or_path not in [
+            model.id for model in self.client.models.list().data
+        ]:
+            raise Exception(
+                f"Model `{self.model_name_or_path}` not found. Please download it first."
+            )
+
     @postprocess
     def generate(
         self,

@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional, Union
 
 import pydantic
+import requests
 
 from risk_atlas_nexus.blocks.inference.params import (
     InferenceEngineCredentials,
@@ -36,10 +37,17 @@ class InferenceEngine(ABC):
     ):
         self.model_name_or_path = model_name_or_path
         self.parameters = self._check_if_parameters_are_valid(parameters)
-        self.client = self.create_client(
-            self.prepare_credentials(credentials if credentials else {})
-        )
+        self.credentials = self.prepare_credentials(credentials if credentials else {})
+        self.client = self.create_client(self.credentials)
         self.concurrency_limit = concurrency_limit
+
+        # health check
+        try:
+            self.ping()
+        except Exception as e:
+            raise Exception(
+                f"Failed to create `{self.__class__.__name__}`. Reason: {str(e)} Given API credentials: {self.credentials}"
+            )
 
         logger.info(f"Created {self._inference_engine_type} inference engine.")
 
@@ -56,8 +64,9 @@ class InferenceEngine(ABC):
                 raise Exception(
                     f"Invalid parameters found: {invalid_params}. {self._inference_engine_type} inference engine only supports {list(self._inference_engine_parameter_class.__annotations__)}"
                 )
-
-        return parameters
+            return parameters
+        else:
+            return {}
 
     def _to_openai_format(self, prompt: Union[OpenAIChatCompletionMessageParam, str]):
         if isinstance(prompt, str):
@@ -70,6 +79,10 @@ class InferenceEngine(ABC):
             raise Exception(
                 f"Invalid input format: {prompt}. Please use openai format or plain str."
             )
+
+    def ping(self):
+        # Implement inference engine specific ping in their respective class.
+        pass
 
     @abstractmethod
     def prepare_credentials(
