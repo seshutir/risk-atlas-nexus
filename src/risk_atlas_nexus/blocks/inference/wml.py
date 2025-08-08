@@ -96,6 +96,10 @@ class WMLInferenceEngine(InferenceEngine):
             model_id=self.model_name_or_path, api_client=client, params=self.parameters
         )
 
+    def ping(self):
+        # ping is handled by the APIClient class internally.
+        pass
+
     @postprocess
     def generate(
         self,

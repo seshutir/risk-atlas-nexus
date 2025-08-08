@@ -51,6 +51,14 @@ class OllamaInferenceEngine(InferenceEngine):
 
         return Client(host=credentials["api_url"])
 
+    def ping(self):
+        if self.model_name_or_path not in [
+            model.model for model in self.client.list().models
+        ]:
+            raise Exception(
+                f"Model `{self.model_name_or_path}` not found. Please download it first."
+            )
+
     @postprocess
     def generate(
         self,

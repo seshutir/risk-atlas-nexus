@@ -1,7 +1,9 @@
 import os
-from typing import Any, Dict, List, Union
+from typing import Dict, List, Union
 
+import httpx
 from dotenv import load_dotenv
+from openai import NotFoundError
 
 from risk_atlas_nexus.blocks.inference.base import InferenceEngine
 from risk_atlas_nexus.blocks.inference.params import (
@@ -55,7 +57,14 @@ class RITSInferenceEngine(InferenceEngine):
             api_key=credentials["api_key"],
             base_url=f"{credentials['api_url']}/{model_name_for_endpoint}/v1",
             default_headers={"RITS_API_KEY": credentials["api_key"]},
+            timeout=httpx.Timeout(None, connect=1.0),
         )
+
+    def ping(self):
+        try:
+            self.client.models.list()
+        except NotFoundError:
+            raise Exception(f"Model `{self.model_name_or_path}` not available.")
 
     @postprocess
     def generate(
