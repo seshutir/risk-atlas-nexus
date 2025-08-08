@@ -11,6 +11,7 @@ prefixes:
   airo: https://w3id.org/airo#
   nexus: https://ibm.github.io/risk-atlas-nexus/ontology/
   dpv: https://w3c.github.io/dpv/2.1/dpv/#
+  ai: https://w3c.github.io/dpv/2.1/ai/#
 
 default_range: string
 default_prefix: nexus

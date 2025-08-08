@@ -134,13 +134,13 @@ slots:
     slot_uri: dqv:hasQualityMeasurement
     description: A relationship indicating that an entity has an AI evaluation result.
     range: AiEvalResult
-    inlined: true
-    inlined_as_list: true
+    inlined: false
     multivalued: true
   isResultOf:
     slot_uri: dqv:isMeasurementOf
     description: A relationship indicating that an entity is the result of an AI evaluation.
     range: AiEval
+    multivalued: false
     inlined: false
   hasDataType:
     description: The type of data used in the benchmark (e.g., text, images, or multi-modal)

@@ -130,6 +130,12 @@ classes:
     description: A modality supported by an Ai component. Examples include text, image, video.
     slots:
 
+  Input:
+    is_a: Entity
+    class_uri: airo:Input
+    description: Input for which the system or component generates output.
+    slots:
+
 # ----------------
 # Slots
 # ----------------

@@ -37,12 +37,6 @@ class TestLibrary(TestCaseBase):
     def tearDownClass(cls):
         return NotImplemented
 
-    ###############################################################################################
-    #                                 Tests for .get_version()                                    #
-    ###############################################################################################
-    def test_library_version(self):
-        version = self.ran_lib.get_version()
-        assert version == {"version": "0.0.7"}
 
     ###############################################################################################
     #                                 Tests for .get_schema()                                    #

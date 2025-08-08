@@ -271,7 +271,7 @@ datasets:
   - id: Paul/XSTest
     name: "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models"
     description: XSTest is a test suite designed to identify exaggerated safety / false refusal in Large Language Models (LLMs). It comprises 250 safe prompts across 10 different prompt types, along with 200 unsafe prompts as contrasts. The test suite aims to evaluate how well LLMs balance being helpful with being harmless by testing if they unnecessarily refuse to answer safe prompts that superficially resemble unsafe ones.
-    url: https://huggingface.co/datasets/Paul/XSTest
+    url: Paul/XSTest
     hasLicense: license-cc-by-4.0
     hasDocumentation:
     - https://arxiv.org/abs/2308.01263
@@ -542,7 +542,7 @@ evaluations:
     hasDocumentation:
     - https://arxiv.org/abs/2308.01263
     hasDataset:
-    - 'https://huggingface.co/datasets/Paul/XSTest'
+    - Paul/XSTest
     hasTasks:
     - text2text-generation
     hasLicense: license-cc-by-4.0
