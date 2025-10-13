@@ -17,17 +17,14 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 from risk_atlas_nexus.ai_risk_ontology.datamodel.ai_risk_ontology import (
     Action,
-    Adapter,
     AiEval,
     BenchmarkMetadataCard,
     Dataset,
     Documentation,
-    LLMIntrinsic,
     Risk,
     RiskControl,
     RiskIncident,
     RiskTaxonomy,
-    Stakeholder,
 )
 from risk_atlas_nexus.blocks.inference import InferenceEngine
 from risk_atlas_nexus.blocks.prompt_builder import (
@@ -54,8 +51,20 @@ from risk_atlas_nexus.toolkit.error_utils import type_check, value_check
 from risk_atlas_nexus.toolkit.logging import configure_logger
 
 
+from risk_policy_distillation.pipeline.clusterer import Clusterer
+from risk_policy_distillation.pipeline.concept_extractor import Extractor
+from risk_policy_distillation.evaluation.evaluate import Evaluator
+from risk_policy_distillation.pipeline.pipeline import Pipeline
+from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
+from risk_policy_distillation.utils.data_util import load_ds
+from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
+from risk_policy_distillation.models.guardians.granite_guardian_batch import GGRits
+from risk_policy_distillation.llms.rits_component import RITSComponent
+from risk_policy_distillation.datasets.prompt_dataset import PromptDataset
+from risk_policy_distillation.datasets.prompt_response_dataset import PromptResponseDataset
+
+
 logger = configure_logger(__name__)
-RISK_IDENTIFICATION_COT = load_resource("risk_generation_cot.json")
 
 
 class RiskAtlasNexus:
@@ -493,7 +502,6 @@ class RiskAtlasNexus:
         taxonomy: Optional[str] = None,
         cot_examples: Optional[Dict[str, List]] = None,
         max_risk: Optional[int] = None,
-        zero_shot_only: bool = False,
     ) -> List[List[Risk]]:
         """Identify potential risks from a usecase description
 
@@ -503,14 +511,15 @@ class RiskAtlasNexus:
             inference_engine (InferenceEngine):
                 An LLM inference engine to infer risks from the usecases.
             taxonomy (str, optional):
-                The string label for a taxonomy. If not specified, the system will use "ibm-ai-risk-atlas" as the default taxonomy.
+                The string label for a taxonomy.
             cot_examples (Dict[str, List], optional):
-                If the user wants to improve risk identification via a Few-shot approach, `cot_examples` can be
-                provided with the desired taxonomy as key. Please follow the example template at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
-                If the `cot_examples` is omitted, the API default to a Zero-Shot approach.
+                The Chain of Thought (CoT) examples to use in the risk identification.
+                The example template is available at src/risk_atlas_nexus/data/templates/risk_generation_cot.json.
+                Assign the ID of the taxonomy you wish to use as the key for CoT examples. Providing this value
+                will override the CoT examples present in the template master. Default to None.
             max_risk (int, optional):
                 The maximum number of risks to extract. Pass None to allow the inference engine to determine the number of risks. Defaults to None.
-            zero_shot_only (bool): If enabled, this flag allows the system to perform Zero Shot Risk identification, and the field `cot_examples` will be ignored.
+
         Returns:
             List[List[Risk]]:
                 Result containing a list of risks
@@ -545,30 +554,35 @@ class RiskAtlasNexus:
             "Usecases must be a list of string.",
         )
 
+        # For the given taxonomy type, check if the user has provided 'cot_examples'. If not,
+        # retrieve the default cot examples from the master. If no examples exist in the master,
+        # set it as None.
+        RISK_IDENTIFICATION_COT = load_resource("risk_generation_cot.json")
+        processed_examples = None
+
+        if cot_examples:
+            processed_examples = cot_examples.get(taxonomy, None)
+        elif taxonomy:
+            processed_examples = RISK_IDENTIFICATION_COT.get(taxonomy, None)
+
         # if not providing taxonomy, set to IBM AI risk atlas
         if taxonomy is None:
             logger.warning(
                 f"<RAN47375G12W>",
                 f"Taxonomy was not provided, defaulting to ibm-ai-risk-atlas.",
             )
+
         set_taxonomy = taxonomy or "ibm-ai-risk-atlas"
 
-        processed_examples = None
-        if zero_shot_only:
-            logger.info(
-                f"The `zero_shot_only` flag is enabled. The system will use the Zero shot method. Any provided `cot_examples` will be disregarded.",
+        # Set prompt builder based on whether the CoT examples are available.
+        if processed_examples is None:
+            logger.warning(
+                f"<RAN47275F12W>",
+                f"Warning: Chain of Thought (CoT) examples were not provided, or do not exist in the master for this "
+                f"taxonomy. The API will use the Zero shot method. To improve the accuracy "
+                f"of risk identification, please provide CoT examples in `cot_examples` when calling this API. You may "
+                f"also consider raising an issue to permanently add these examples to the Risk Atlas Nexus master.",
             )
-        else:
-            # For the given taxonomy type, check if the user has provided 'cot_examples'. If not,
-            # retrieve the default cot examples from the master. If no examples exist in the master,
-            # set it as None.
-            processed_examples = (
-                cot_examples and cot_examples.get(set_taxonomy, None)
-            ) or RISK_IDENTIFICATION_COT.get(set_taxonomy, None)
-            if processed_examples is None:
-                logger.warning(
-                    f"<RAN47275F12W> Chain of Thought (CoT) examples were not provided, or do not exist in the master for this taxonomy. The API will use the Zero shot method. To improve the accuracy of risk identification, please provide CoT examples in `cot_examples` when calling this API. You may also consider raising an issue to permanently add these examples to the Risk Atlas Nexus master."
-                )
 
         risk_detector = GenericRiskDetector(
             risks=cls._risk_explorer.get_all_risks(set_taxonomy),
@@ -1059,7 +1073,7 @@ class RiskAtlasNexus:
                 (Optional) The string label for a taxonomy
 
         Returns:
-            BenchmarkMetadataCard
+            Action
                 Result containing a benchmark_metadata_card.
         """
         type_check(
@@ -1107,7 +1121,7 @@ class RiskAtlasNexus:
                 (Optional) The string label for a taxonomy
 
         Returns:
-            Documentation
+            Action
                 Result containing a document.
         """
         type_check(
@@ -1151,7 +1165,7 @@ class RiskAtlasNexus:
                 (Optional) The string label for a taxonomy
 
         Returns:
-            Dataset
+            Action
                 Result containing a dataset.
         """
         type_check(
@@ -1163,227 +1177,6 @@ class RiskAtlasNexus:
 
         dataset: Dataset | None = cls._risk_explorer.get_dataset(id=id)
         return dataset
-
-    def get_stakeholders(cls, taxonomy=None):
-        """Get all stakeholder definitions from the LinkML
-
-        Args:
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            list[Stakeholder]
-                Result containing a list of Stakeholder entries
-        """
-        type_check(
-            "<RAN61770043E>",
-            str,
-            allow_none=True,
-            taxonomy=taxonomy,
-        )
-
-        stakeholder_instances: list[Stakeholder] = cls._risk_explorer.get_stakeholders(taxonomy)
-        return stakeholder_instances
-
-    def get_stakeholder(cls, id=str):
-        """Get a stakeholder definition from the LinkML, filtered by id
-
-        Args:
-            id: str
-                The string id identifying the stakeholder entry
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            Stakeholder
-                Result containing a stakeholder.
-        """
-        type_check(
-            "<RAN12472418E>",
-            str,
-            allow_none=False,
-            id=id,
-        )
-
-        stakeholder: Stakeholder | None = cls._risk_explorer.get_stakeholder(id=id)
-        return stakeholder
-
-
-
-    def get_intrinsics(cls, taxonomy=None):
-        """Get all intrinsic definitions from the LinkML
-
-        Args:
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            list[LLMIntrinsic]
-                Result containing a list of LLMIntrinsic entries
-        """
-        type_check(
-            "<RAN61770043E>",
-            str,
-            allow_none=True,
-            taxonomy=taxonomy,
-        )
-
-        intrinsic_instances: list[LLMIntrinsic] = cls._risk_explorer.get_llmintrinsics(taxonomy)
-        return intrinsic_instances
-
-    def get_intrinsic(cls, id=str):
-        """Get an intrinsic definition from the LinkML, filtered by id
-
-        Args:
-            id: str
-                The string id identifying the intrinsic entry
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            LLMIntrinsic
-                Result containing a intrinsic.
-        """
-        type_check(
-            "<RAN12472418E>",
-            str,
-            allow_none=False,
-            id=id,
-        )
-
-        intrinsic: LLMIntrinsic | None = cls._risk_explorer.get_llmintrinsic(id=id)
-        return intrinsic
-
-    def get_related_intrinsics(
-        cls,
-        risk=None,
-        tag=None,
-        risk_id=None,
-        name=None,
-        taxonomy=None,
-    ):
-        """Get related intrinsics for a risk definition from the LinkML.  The risk is identified by risk id, tag, or name
-
-        Args:
-            risk: (Optional) Risk
-                The risk
-            risk_id: (Optional) str
-                The string ID identifying the risk
-            tag: (Optional) str
-                The string tag identifying the risk
-            name: (Optional) str
-                The string name identifying the risk
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            List
-                Result containing a list of Intrinsics
-        """
-        type_check(
-            "<RAN4E03158FE>",
-            Risk,
-            allow_none=True,
-            risk=risk,
-        )
-        type_check(
-            "<RAN55784808E>",
-            str,
-            allow_none=True,
-            tag=tag,
-            risk_id=risk_id,
-            name=name,
-            taxonomy=taxonomy,
-        )
-        value_check(
-            "<RAN5DCADF94E>",
-            risk or tag or risk_id or name,
-            "Please provide risk, tag, risk_id, or name",
-        )
-
-        intrinsics = cls._risk_explorer.get_related_llmintrinsics(
-            risk=risk,
-            tag=tag,
-            risk_id=risk_id,
-            name=name,
-            taxonomy=taxonomy,
-        )
-        return intrinsics
-
-
-    def get_adapters(cls, taxonomy=None):
-        """Get all adapter definitions from the LinkML
-
-        Args:
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            list[Adapter]
-                Result containing a list of Adapter entries
-        """
-        type_check(
-            "<RAN61770043E>",
-            str,
-            allow_none=True,
-            taxonomy=taxonomy,
-        )
-
-        adapter_instances: list[Adapter] = cls._risk_explorer.get_adapters(taxonomy)
-        return adapter_instances
-
-    def get_adapter(cls, id=str):
-        """Get an adapter definition from the LinkML, filtered by id
-
-        Args:
-            id: str
-                The string id identifying the stakeholder entry
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            Adapter
-                Result containing a adapter.
-        """
-        type_check(
-            "<RAN12472418E>",
-            str,
-            allow_none=False,
-            id=id,
-        )
-
-        adapter: Adapter | None = cls._risk_explorer.get_adapter(id=id)
-        return adapter
-
-
-    def get_instances(cls, target_class, taxonomy=None):
-        """Get all instance definitions from the LinkML
-
-        Args:
-            target_class: str
-                (Optional) The string label for a target class
-            taxonomy: str
-                (Optional) The string label for a taxonomy
-
-        Returns:
-            list[Any]
-                Result containing a list of instance entries
-        """
-        type_check(
-            "<RAN92358069E>",
-            str,
-            allow_none=False,
-            target_class=id,
-        )
-        type_check(
-            "<RAN61877043E>",
-            str,
-            allow_none=True,
-            taxonomy=taxonomy,
-        )
-
-        instances: list[Any] = cls._risk_explorer.get_instances(target_class, taxonomy)
-        return instances
 
     def identify_domain_from_usecases(
         cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
@@ -1537,3 +1330,151 @@ class RiskAtlasNexus:
             )
 
         return results
+
+
+    def identify_domain_from_usecases(
+            cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
+        ) -> List[List[str]]:
+            """Identify potential risks from a usecase description
+
+            Args:
+                usecases (List[str]):
+                    A List of strings describing AI usecases
+                inference_engine (InferenceEngine):
+                    An LLM inference engine to identify AI tasks from usecases.
+
+            Returns:
+                List[List[str]]:
+                    Result containing a list of AI tasks
+            """
+            type_check(
+                "<RAN3B9CD886E>",
+                InferenceEngine,
+                allow_none=False,
+                inference_engine=inference_engine,
+            )
+            type_check(
+                "<RAN4CDA6852E>",
+                List,
+                allow_none=False,
+                usecases=usecases,
+            )
+            value_check(
+                "<RAN0E435F50E>",
+                inference_engine and usecases,
+                "Please provide usecases and inference_engine",
+            )
+
+            # Load risk questionnaire CoT from the template dir
+            risk_questionnaire = load_resource("risk_questionnaire_cot.json")
+
+            # Retrieve domain question data
+            domain_ques_data = risk_questionnaire[0]
+
+            # Prepare few shots inference prompts from CoT Data
+            prompts = [
+                FewShotPromptBuilder(
+                    prompt_template=QUESTIONNAIRE_COT_TEMPLATE,
+                ).build(
+                    cot_examples=domain_ques_data["cot_examples"],
+                    usecase=usecase,
+                    question=domain_ques_data["question"],
+                )
+                for usecase in usecases
+            ]
+
+            # Invoke inference service
+            return inference_engine.chat(
+                messages=prompts,
+                response_format=DOMAIN_TYPE_SCHEMA,
+                postprocessors=["json_object"],
+                verbose=verbose,
+            )
+
+    def generate_policy_rules(
+        self,
+        task: str, 
+        label_names: List[str],
+        dataset_config: dict
+    ):
+        """Determine the policy.
+        Args:
+
+        Returns:
+
+        """
+        # Create LLM as a judge 
+        # Define a guardian model and the task
+        guardian_config = {
+            "task": f"{task} detection", 
+            "criterion": f"{task}",
+            "criterion_definition": f"The message has {task} by common-sense.",
+            "labels": [0, 1],
+            "label_names": label_names,
+            "output_labels": ["No", "Yes"],
+            "rits": {
+            "model_name": "granite-guardian-3-2-5b-ris",
+            "model_served_name": "ibm-granite/granite-guardian-3.2-5b"
+            }
+        }
+
+        guardian = RITSGuardian(guardian_config['rits']['model_name'], guardian_config['rits']['model_served_name'], guardian_config, 'gg3.2:5b')
+
+        # Check required key value pairs of dataset config
+        assert isinstance(dataset_config, dict), "Dataset config file must be a dict"
+
+        required_paths = [
+            ("data", "type"),
+            ("data", "index_col"),
+            ("data", "prompt_col"),
+            ("data", "response_col"),
+            ("data", "label_col"),
+            ("data", "flip_labels"),
+            ("data", "category_label"),
+        ]
+
+        for path in required_paths:
+            curr = dataset_config
+            for i, key in enumerate(path):
+                if key not in curr:
+                    full_path = ".".join(path[: i + 1])
+                    raise KeyError(f"Missing required key: {full_path!r}")
+                curr = curr[key]
+                if not isinstance(curr, Mapping) and i < len(path) - 1:
+                    # we are not at the leaf yet, but the next part isn't a dict
+                    full_path = ".".join(path[: i + 1])
+                    raise TypeError(f"Expected a dict at {full_path!r}, got {type(curr).__name__}")
+
+
+
+
+
+        required = ("type", "index_col", "prompt_col", "response_col", "label_col",  )
+        for key in required:
+            assert key in dataset_config, f"Missing required key: '{key}'"
+
+
+        # Wrap the dataframe 
+        dataset = PromptResponseDataset(dataset_config)
+
+
+        llm_component = RITSComponent('llama-3-3-70b-instruct', 'meta-llama/llama-3-3-70b-instruct')
+        local_explainer = LIME(dataset_config['general']['dataset_name'], guardian_config['label_names'], n_samples=100)
+
+        # Create pipeline
+        pipeline = Pipeline(extractor = Extractor(guardian, 
+                                            llm_component, 
+                                            guardian_config['criterion'], 
+                                            guardian_config['criterion_definition'], 
+                                            local_explainer),
+                        clusterer = Clusterer(llm_component,
+                                            guardian_config['criterion_definition'],
+                                            guardian_config['label_names'], 
+                                            n_iter=10),
+                        lime=True, 
+                        fr=True)
+        
+        # Run pipeline
+        expl = pipeline.run(dataset, path='../results/')
+        return expl
+
