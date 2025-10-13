@@ -1420,38 +1420,43 @@ class RiskAtlasNexus:
 
         guardian = RITSGuardian(guardian_config['rits']['model_name'], guardian_config['rits']['model_served_name'], guardian_config, 'gg3.2:5b')
 
-        # Check required key value pairs of dataset config
-        assert isinstance(dataset_config, dict), "Dataset config file must be a dict"
+        top_level = ("general", "data", "split")
 
-        required_paths = [
-            ("data", "type"),
-            ("data", "index_col"),
-            ("data", "prompt_col"),
-            ("data", "response_col"),
-            ("data", "label_col"),
-            ("data", "flip_labels"),
-            ("data", "category_label"),
-        ]
+        nested = {
+            "general": ("location", "dataset_name"),
+            "data": ("type", "index_col", "prompt_col", "response_col",
+                        "label_col", "flip_labels", "category_label"),
+            "split": ("split", "sample_ratio", "subset"),
+        }
 
-        for path in required_paths:
-            curr = dataset_config
-            for i, key in enumerate(path):
-                if key not in curr:
-                    full_path = ".".join(path[: i + 1])
-                    raise KeyError(f"Missing required key: {full_path!r}")
-                curr = curr[key]
-                if not isinstance(curr, Mapping) and i < len(path) - 1:
-                    # we are not at the leaf yet, but the next part isn't a dict
-                    full_path = ".".join(path[: i + 1])
-                    raise TypeError(f"Expected a dict at {full_path!r}, got {type(curr).__name__}")
+        required_top = ("general", "data", "split")
+
+        required_sub = {
+            "general": ("location", "dataset_name"),
+            "data": (
+                "type", "index_col", "prompt_col", "response_col",
+                "label_col", "flip_labels", "category_label"
+            ),
+            "split": ("split", "sample_ratio", "subset")
+        }
 
 
+        if not isinstance(dataset_config, dict):
+            raise TypeError(f"Expected a dict, got {type(cfg).__name__}")
 
 
+        for top in required_top:
+            if top not in dataset_config:
+                raise KeyError(f"Missing top‑level key: {top!r}")
 
-        required = ("type", "index_col", "prompt_col", "response_col", "label_col",  )
-        for key in required:
-            assert key in dataset_config, f"Missing required key: '{key}'"
+            sub_cfg = dataset_config[top]
+            if not isinstance(sub_cfg, dict):
+                raise TypeError(f"Expected a dict at {top!r}, got {type(sub_cfg).__name__}")
+
+
+            for sub in required_sub[top]:
+                if sub not in sub_cfg:
+                    raise KeyError(f"Missing required key: {top}.{sub!r}")
 
 
         # Wrap the dataframe 
