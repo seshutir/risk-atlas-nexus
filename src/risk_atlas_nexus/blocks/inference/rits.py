@@ -91,7 +91,7 @@ class RITSInferenceEngine(InferenceEngine):
         def chat_response(messages):
             response = self.client.chat.completions.create(
                 messages=self._to_openai_format(messages),
-                model=self.model_name_or_path,
+                model="ibm-granite/granite-guardian-3.2-5b",
                 response_format=self._create_schema_format(response_format),
                 **self.parameters,
             )
@@ -109,6 +109,14 @@ class RITSInferenceEngine(InferenceEngine):
         return TextGenerationInferenceOutput(
             prediction=response.choices[0].message.content,
             model_name_or_path=self.model_name_or_path,
+            logprobs=(
+                {
+                    output.token: output.logprob
+                    for output in response.choices[0].logprobs.content
+                }
+                if response.choices[0].logprobs
+                else None
+            ),
             inference_engine=str(self._inference_engine_type),
         )
 

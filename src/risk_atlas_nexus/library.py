@@ -15,6 +15,20 @@ from sssom_schema import Mapping
 os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
 os.environ["OMP_NUM_THREADS"] = "1"
 
+from risk_policy_distillation.datasets.prompt_dataset import PromptDataset
+from risk_policy_distillation.datasets.prompt_response_dataset import (
+    PromptResponseDataset,
+)
+from risk_policy_distillation.evaluation.evaluate import Evaluator
+from risk_policy_distillation.llms.rits_component import RITSComponent
+from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
+from risk_policy_distillation.models.guardians.granite_guardian_batch import GGRits
+from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
+from risk_policy_distillation.pipeline.clusterer import Clusterer
+from risk_policy_distillation.pipeline.concept_extractor import Extractor
+from risk_policy_distillation.pipeline.pipeline import Pipeline
+from risk_policy_distillation.utils.data_util import load_ds
+
 from risk_atlas_nexus.ai_risk_ontology.datamodel.ai_risk_ontology import (
     Action,
     AiEval,
@@ -49,19 +63,6 @@ from risk_atlas_nexus.metadata_base import MappingMethod
 from risk_atlas_nexus.toolkit.data_utils import load_yamls_to_container
 from risk_atlas_nexus.toolkit.error_utils import type_check, value_check
 from risk_atlas_nexus.toolkit.logging import configure_logger
-
-
-from risk_policy_distillation.pipeline.clusterer import Clusterer
-from risk_policy_distillation.pipeline.concept_extractor import Extractor
-from risk_policy_distillation.evaluation.evaluate import Evaluator
-from risk_policy_distillation.pipeline.pipeline import Pipeline
-from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
-from risk_policy_distillation.utils.data_util import load_ds
-from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
-from risk_policy_distillation.models.guardians.granite_guardian_batch import GGRits
-from risk_policy_distillation.llms.rits_component import RITSComponent
-from risk_policy_distillation.datasets.prompt_dataset import PromptDataset
-from risk_policy_distillation.datasets.prompt_response_dataset import PromptResponseDataset
 
 
 logger = configure_logger(__name__)
@@ -1331,71 +1332,73 @@ class RiskAtlasNexus:
 
         return results
 
-
     def identify_domain_from_usecases(
-            cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
-        ) -> List[List[str]]:
-            """Identify potential risks from a usecase description
+        cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
+    ) -> List[List[str]]:
+        """Identify potential risks from a usecase description
 
-            Args:
-                usecases (List[str]):
-                    A List of strings describing AI usecases
-                inference_engine (InferenceEngine):
-                    An LLM inference engine to identify AI tasks from usecases.
+        Args:
+            usecases (List[str]):
+                A List of strings describing AI usecases
+            inference_engine (InferenceEngine):
+                An LLM inference engine to identify AI tasks from usecases.
 
-            Returns:
-                List[List[str]]:
-                    Result containing a list of AI tasks
-            """
-            type_check(
-                "<RAN3B9CD886E>",
-                InferenceEngine,
-                allow_none=False,
-                inference_engine=inference_engine,
+        Returns:
+            List[List[str]]:
+                Result containing a list of AI tasks
+        """
+        type_check(
+            "<RAN3B9CD886E>",
+            InferenceEngine,
+            allow_none=False,
+            inference_engine=inference_engine,
+        )
+        type_check(
+            "<RAN4CDA6852E>",
+            List,
+            allow_none=False,
+            usecases=usecases,
+        )
+        value_check(
+            "<RAN0E435F50E>",
+            inference_engine and usecases,
+            "Please provide usecases and inference_engine",
+        )
+
+        # Load risk questionnaire CoT from the template dir
+        risk_questionnaire = load_resource("risk_questionnaire_cot.json")
+
+        # Retrieve domain question data
+        domain_ques_data = risk_questionnaire[0]
+
+        # Prepare few shots inference prompts from CoT Data
+        prompts = [
+            FewShotPromptBuilder(
+                prompt_template=QUESTIONNAIRE_COT_TEMPLATE,
+            ).build(
+                cot_examples=domain_ques_data["cot_examples"],
+                usecase=usecase,
+                question=domain_ques_data["question"],
             )
-            type_check(
-                "<RAN4CDA6852E>",
-                List,
-                allow_none=False,
-                usecases=usecases,
-            )
-            value_check(
-                "<RAN0E435F50E>",
-                inference_engine and usecases,
-                "Please provide usecases and inference_engine",
-            )
+            for usecase in usecases
+        ]
 
-            # Load risk questionnaire CoT from the template dir
-            risk_questionnaire = load_resource("risk_questionnaire_cot.json")
-
-            # Retrieve domain question data
-            domain_ques_data = risk_questionnaire[0]
-
-            # Prepare few shots inference prompts from CoT Data
-            prompts = [
-                FewShotPromptBuilder(
-                    prompt_template=QUESTIONNAIRE_COT_TEMPLATE,
-                ).build(
-                    cot_examples=domain_ques_data["cot_examples"],
-                    usecase=usecase,
-                    question=domain_ques_data["question"],
-                )
-                for usecase in usecases
-            ]
-
-            # Invoke inference service
-            return inference_engine.chat(
-                messages=prompts,
-                response_format=DOMAIN_TYPE_SCHEMA,
-                postprocessors=["json_object"],
-                verbose=verbose,
-            )
+        # Invoke inference service
+        return inference_engine.chat(
+            messages=prompts,
+            response_format=DOMAIN_TYPE_SCHEMA,
+            postprocessors=["json_object"],
+            verbose=verbose,
+        )
 
     def generate_policy_rules(
         self,
-        task: str, 
+        task: str,
         label_names: List[str],
-        dataset_config: dict
+        dataset_config: dict,
+        inference_engine: InferenceEngine,
+        results_path: Path = Path("results"),
+        datasets_path: Path = Path("datasets"),
     ):
         """Determine the policy.
         Args:
@@ -1403,47 +1406,37 @@ class RiskAtlasNexus:
         Returns:
 
         """
-        # Create LLM as a judge 
-        # Define a guardian model and the task
+        # Create LLM as a judge, define a guardian model and the task
         guardian_config = {
-            "task": f"{task} detection", 
+            "task": f"{task} detection",
             "criterion": f"{task}",
             "criterion_definition": f"The message has {task} by common-sense.",
             "labels": [0, 1],
             "label_names": label_names,
             "output_labels": ["No", "Yes"],
-            "rits": {
-            "model_name": "granite-guardian-3-2-5b-ris",
-            "model_served_name": "ibm-granite/granite-guardian-3.2-5b"
-            }
         }
 
-        guardian = RITSGuardian(guardian_config['rits']['model_name'], guardian_config['rits']['model_served_name'], guardian_config, 'gg3.2:5b')
-
-        top_level = ("general", "data", "split")
-
-        nested = {
-            "general": ("location", "dataset_name"),
-            "data": ("type", "index_col", "prompt_col", "response_col",
-                        "label_col", "flip_labels", "category_label"),
-            "split": ("split", "sample_ratio", "subset"),
-        }
+        guardian = RITSGuardian(
+            inference_engine=inference_engine, config=guardian_config, name="gg3.2:5b"
+        )
 
         required_top = ("general", "data", "split")
-
         required_sub = {
             "general": ("location", "dataset_name"),
             "data": (
-                "type", "index_col", "prompt_col", "response_col",
-                "label_col", "flip_labels", "category_label"
+                "type",
+                "index_col",
+                "prompt_col",
+                "response_col",
+                "label_col",
+                "flip_labels",
+                "category_label",
             ),
-            "split": ("split", "sample_ratio", "subset")
+            "split": ("split", "sample_ratio", "subset"),
         }
-
 
         if not isinstance(dataset_config, dict):
             raise TypeError(f"Expected a dict, got {type(cfg).__name__}")
-
 
         for top in required_top:
             if top not in dataset_config:
@@ -1451,35 +1444,45 @@ class RiskAtlasNexus:
 
             sub_cfg = dataset_config[top]
             if not isinstance(sub_cfg, dict):
-                raise TypeError(f"Expected a dict at {top!r}, got {type(sub_cfg).__name__}")
-
+                raise TypeError(
+                    f"Expected a dict at {top!r}, got {type(sub_cfg).__name__}"
+                )
 
             for sub in required_sub[top]:
                 if sub not in sub_cfg:
                     raise KeyError(f"Missing required key: {top}.{sub!r}")
 
+        # Wrap the dataframe
+        dataset = PromptResponseDataset(dataset_config, datasets_path=datasets_path)
 
-        # Wrap the dataframe 
-        dataset = PromptResponseDataset(dataset_config)
-
-
-        llm_component = RITSComponent('llama-3-3-70b-instruct', 'meta-llama/llama-3-3-70b-instruct')
-        local_explainer = LIME(dataset_config['general']['dataset_name'], guardian_config['label_names'], n_samples=100)
+        llm_component = RITSComponent(
+            "llama-3-3-70b-instruct", "meta-llama/llama-3-3-70b-instruct"
+        )
+        local_explainer = LIME(
+            dataset_config["general"]["dataset_name"],
+            guardian_config["label_names"],
+            n_samples=100,
+        )
 
         # Create pipeline
-        pipeline = Pipeline(extractor = Extractor(guardian, 
-                                            llm_component, 
-                                            guardian_config['criterion'], 
-                                            guardian_config['criterion_definition'], 
-                                            local_explainer),
-                        clusterer = Clusterer(llm_component,
-                                            guardian_config['criterion_definition'],
-                                            guardian_config['label_names'], 
-                                            n_iter=10),
-                        lime=True, 
-                        fr=True)
-        
-        # Run pipeline
-        expl = pipeline.run(dataset, path='../results/')
-        return expl
+        pipeline = Pipeline(
+            extractor=Extractor(
+                guardian,
+                llm_component,
+                guardian_config["criterion"],
+                guardian_config["criterion_definition"],
+                local_explainer,
+            ),
+            clusterer=Clusterer(
+                llm_component,
+                guardian_config["criterion_definition"],
+                guardian_config["label_names"],
+                n_iter=10,
+            ),
+            lime=True,
+            fr=True,
+        )
 
+        # Run pipeline
+        expl = pipeline.run(dataset, results_path=results_path)
+        return expl
