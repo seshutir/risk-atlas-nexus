@@ -1393,27 +1393,32 @@ class RiskAtlasNexus:
 
     def generate_policy_rules(
         self,
-        guardian_config: dict,
-        dataset_config: dict,
+        guardian_config: Dict,
+        dataset_config: Dict,
         inference_engine: InferenceEngine,
         results_path: Path = Path("results"),
         datasets_path: Path = Path("datasets"),
-    ):
-        """Determine the policy.
+    ) -> List:
+        """Generate the policy rules.
+
         Args:
+            guardian_config (Dict): guardian connfig
+            dataset_config (Dict): Dataset config
+            inference_engine (InferenceEngine): An LLM inference engine
+            results_path (Path, optional): Output directory path. Defaults to Path("results").
+            datasets_path (Path, optional): Dataset directory path. Defaults to Path("datasets").
 
         Returns:
-
+            List: A list of policy rules
         """
 
-        # Create an instance of the LLM as a judge guardian judge
+        # Create an instance of the Guardian LLM as a judge
         guardian = RITSGuardian(
-            inference_engine=inference_engine, config=guardian_config, name="gg3.2:5b"
+            inference_engine=inference_engine, config=guardian_config
         )
 
         # Validate dataset_config
-        required_top = ("general", "data", "split")
-        required_sub = {
+        required_dataset_config = {
             "general": ("location", "dataset_name"),
             "data": (
                 "type",
@@ -1427,22 +1432,28 @@ class RiskAtlasNexus:
             "split": ("split", "sample_ratio", "subset"),
         }
 
-        if not isinstance(dataset_config, dict):
-            raise TypeError(f"Expected a dict, got {type(cfg).__name__}")
+        type_check(
+            "<RAN19654287E>",
+            Dict,
+            allow_none=False,
+            dataset_config=dataset_config,
+        )
 
-        for top in required_top:
-            if top not in dataset_config:
-                raise KeyError(f"Missing top‑level key: {top!r}")
+        for label, config in required_dataset_config.items():
+            if label not in dataset_config:
+                raise KeyError(f"Missing top‑level key: {label!r}")
 
-            sub_cfg = dataset_config[top]
-            if not isinstance(sub_cfg, dict):
-                raise TypeError(
-                    f"Expected a dict at {top!r}, got {type(sub_cfg).__name__}"
-                )
+            sub_cfg = dataset_config[label]
+            type_check(
+                "<RAN84698483E>",
+                Dict,
+                allow_none=False,
+                sub_cfg=sub_cfg,
+            )
 
-            for sub in required_sub[top]:
+            for sub in config:
                 if sub not in sub_cfg:
-                    raise KeyError(f"Missing required key: {top}.{sub!r}")
+                    raise KeyError(f"Missing required key: {label}.{sub!r}")
 
         # Wrap the dataframe
         dataset = PromptResponseDataset(dataset_config, datasets_path=datasets_path)
