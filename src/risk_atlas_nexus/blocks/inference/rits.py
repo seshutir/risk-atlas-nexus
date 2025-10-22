@@ -91,7 +91,12 @@ class RITSInferenceEngine(InferenceEngine):
         def chat_response(messages):
             response = self.client.chat.completions.create(
                 messages=self._to_openai_format(messages),
-                model="ibm-granite/granite-guardian-3.2-5b",
+                model=(
+                    "ibm-granite/granite-guardian-3.2-5b"
+                    if self.model_name_or_path
+                    == "ibm-granite/granite-guardian-3-2-5b-ris"
+                    else self.model_name_or_path
+                ),
                 response_format=self._create_schema_format(response_format),
                 **self.parameters,
             )

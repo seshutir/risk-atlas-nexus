@@ -1395,6 +1395,7 @@ class RiskAtlasNexus:
         self,
         guardian_config: Dict,
         dataset_config: Dict,
+        guardian_judge: InferenceEngine,
         inference_engine: InferenceEngine,
         results_path: Path = Path("results"),
         datasets_path: Path = Path("datasets"),
@@ -1404,7 +1405,7 @@ class RiskAtlasNexus:
         Args:
             guardian_config (Dict): guardian connfig
             dataset_config (Dict): Dataset config
-            inference_engine (InferenceEngine): An LLM inference engine
+            guardian_judge (InferenceEngine): An LLM inference engine instance of the Granite Guardian
             results_path (Path, optional): Output directory path. Defaults to Path("results").
             datasets_path (Path, optional): Dataset directory path. Defaults to Path("datasets").
 
@@ -1413,9 +1414,7 @@ class RiskAtlasNexus:
         """
 
         # Create an instance of the Guardian LLM as a judge
-        guardian = RITSGuardian(
-            inference_engine=inference_engine, config=guardian_config
-        )
+        guardian = RITSGuardian(inference_engine=guardian_judge, config=guardian_config)
 
         # Validate dataset_config
         required_dataset_config = {
@@ -1458,9 +1457,9 @@ class RiskAtlasNexus:
         # Wrap the dataframe
         dataset = PromptResponseDataset(dataset_config, datasets_path=datasets_path)
 
-        llm_component = RITSComponent(
-            "llama-3-3-70b-instruct", "meta-llama/llama-3-3-70b-instruct"
-        )
+        # llm_component = RITSComponent(
+        #     "llama-3-3-70b-instruct", "meta-llama/llama-3-3-70b-instruct"
+        # )
 
         # Create an instance of the local explainer
         local_explainer = LIME(
@@ -1473,13 +1472,13 @@ class RiskAtlasNexus:
         pipeline = Pipeline(
             extractor=Extractor(
                 guardian,
-                llm_component,
+                inference_engine,
                 guardian_config["criterion"],
                 guardian_config["criterion_definition"],
                 local_explainer,
             ),
             clusterer=Clusterer(
-                llm_component,
+                inference_engine,
                 guardian_config["criterion_definition"],
                 guardian_config["label_names"],
                 n_iter=10,
