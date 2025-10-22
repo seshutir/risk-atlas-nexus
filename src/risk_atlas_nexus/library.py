@@ -1393,8 +1393,7 @@ class RiskAtlasNexus:
 
     def generate_policy_rules(
         self,
-        task: str,
-        label_names: List[str],
+        guardian_config: dict,
         dataset_config: dict,
         inference_engine: InferenceEngine,
         results_path: Path = Path("results"),
@@ -1406,20 +1405,13 @@ class RiskAtlasNexus:
         Returns:
 
         """
-        # Create LLM as a judge, define a guardian model and the task
-        guardian_config = {
-            "task": f"{task} detection",
-            "criterion": f"{task}",
-            "criterion_definition": f"The message has {task} by common-sense.",
-            "labels": [0, 1],
-            "label_names": label_names,
-            "output_labels": ["No", "Yes"],
-        }
 
+        # Create an instance of the granite guardian judge
         guardian = RITSGuardian(
             inference_engine=inference_engine, config=guardian_config, name="gg3.2:5b"
         )
 
+        # Validate dataset_config
         required_top = ("general", "data", "split")
         required_sub = {
             "general": ("location", "dataset_name"),
@@ -1458,6 +1450,8 @@ class RiskAtlasNexus:
         llm_component = RITSComponent(
             "llama-3-3-70b-instruct", "meta-llama/llama-3-3-70b-instruct"
         )
+
+        # Create an instance of the local explainer
         local_explainer = LIME(
             dataset_config["general"]["dataset_name"],
             guardian_config["label_names"],
