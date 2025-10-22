@@ -1406,7 +1406,7 @@ class RiskAtlasNexus:
 
         """
 
-        # Create an instance of the granite guardian judge
+        # Create an instance of the LLM as a judge guardian judge
         guardian = RITSGuardian(
             inference_engine=inference_engine, config=guardian_config, name="gg3.2:5b"
         )
