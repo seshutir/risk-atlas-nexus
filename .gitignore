@@ -2,6 +2,9 @@
 .vscode/
 .idea/
 
+.env
+
+
 # Ignore venv
 vrisk-atlas-nexus
 not for upload/

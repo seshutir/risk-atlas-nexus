@@ -53,6 +53,7 @@ from risk_atlas_nexus.toolkit.logging import configure_logger
 
 from policy_distillation.pipeline.clusterer import Clusterer
 from policy_distillation.pipeline.concept_extractor import Extractor
+from policy_distillation.evaluation.evaluate import Evaluator
 from policy_distillation.pipeline.pipeline import Pipeline
 from policy_distillation.models.explainers.local_explainers.lime import LIME
 from policy_distillation.utils.data_util import load_ds
@@ -1479,6 +1480,6 @@ class RiskAtlasNexus:
                         fr=True)
         
         # Run pipeline
-        expl = pipeline.run(dataset, path='results/')
+        expl = pipeline.run(dataset, path='../results/')
         return expl
 
