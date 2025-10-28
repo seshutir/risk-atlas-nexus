@@ -22,6 +22,20 @@ from sssom_schema import Mapping
 os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
 os.environ["OMP_NUM_THREADS"] = "1"
 
+from risk_policy_distillation.datasets.prompt_dataset import PromptDataset
+from risk_policy_distillation.datasets.prompt_response_dataset import (
+    PromptResponseDataset,
+)
+from risk_policy_distillation.evaluation.evaluate import Evaluator
+from risk_policy_distillation.llms.rits_component import RITSComponent
+from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
+from risk_policy_distillation.models.guardians.granite_guardian_batch import GGRits
+from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
+from risk_policy_distillation.pipeline.clusterer import Clusterer
+from risk_policy_distillation.pipeline.concept_extractor import Extractor
+from risk_policy_distillation.pipeline.pipeline import Pipeline
+from risk_policy_distillation.utils.data_util import load_ds
+
 from risk_atlas_nexus.ai_risk_ontology.datamodel.ai_risk_ontology import (
     Action,
     AiEval,
@@ -1325,78 +1339,81 @@ class RiskAtlasNexus:
 
         return results
 
-
     def identify_domain_from_usecases(
-            cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
-        ) -> List[List[str]]:
-            """Identify potential risks from a usecase description
+        cls, usecases: List[str], inference_engine: InferenceEngine, verbose=True
+    ) -> List[List[str]]:
+        """Identify potential risks from a usecase description
 
-            Args:
-                usecases (List[str]):
-                    A List of strings describing AI usecases
-                inference_engine (InferenceEngine):
-                    An LLM inference engine to identify AI tasks from usecases.
+        Args:
+            usecases (List[str]):
+                A List of strings describing AI usecases
+            inference_engine (InferenceEngine):
+                An LLM inference engine to identify AI tasks from usecases.
 
-            Returns:
-                List[List[str]]:
-                    Result containing a list of AI tasks
-            """
-            type_check(
-                "<RAN3B9CD886E>",
-                InferenceEngine,
-                allow_none=False,
-                inference_engine=inference_engine,
+        Returns:
+            List[List[str]]:
+                Result containing a list of AI tasks
+        """
+        type_check(
+            "<RAN3B9CD886E>",
+            InferenceEngine,
+            allow_none=False,
+            inference_engine=inference_engine,
+        )
+        type_check(
+            "<RAN4CDA6852E>",
+            List,
+            allow_none=False,
+            usecases=usecases,
+        )
+        value_check(
+            "<RAN0E435F50E>",
+            inference_engine and usecases,
+            "Please provide usecases and inference_engine",
+        )
+
+        # Load risk questionnaire CoT from the template dir
+        risk_questionnaire = load_resource("risk_questionnaire_cot.json")
+
+        # Retrieve domain question data
+        domain_ques_data = risk_questionnaire[0]
+
+        # Prepare few shots inference prompts from CoT Data
+        prompts = [
+            FewShotPromptBuilder(
+                prompt_template=QUESTIONNAIRE_COT_TEMPLATE,
+            ).build(
+                cot_examples=domain_ques_data["cot_examples"],
+                usecase=usecase,
+                question=domain_ques_data["question"],
             )
-            type_check(
-                "<RAN4CDA6852E>",
-                List,
-                allow_none=False,
-                usecases=usecases,
-            )
-            value_check(
-                "<RAN0E435F50E>",
-                inference_engine and usecases,
-                "Please provide usecases and inference_engine",
-            )
+            for usecase in usecases
+        ]
 
-            # Load risk questionnaire CoT from the template dir
-            risk_questionnaire = load_resource("risk_questionnaire_cot.json")
-
-            # Retrieve domain question data
-            domain_ques_data = risk_questionnaire[0]
-
-            # Prepare few shots inference prompts from CoT Data
-            prompts = [
-                FewShotPromptBuilder(
-                    prompt_template=QUESTIONNAIRE_COT_TEMPLATE,
-                ).build(
-                    cot_examples=domain_ques_data["cot_examples"],
-                    usecase=usecase,
-                    question=domain_ques_data["question"],
-                )
-                for usecase in usecases
-            ]
-
-            # Invoke inference service
-            return inference_engine.chat(
-                messages=prompts,
-                response_format=DOMAIN_TYPE_SCHEMA,
-                postprocessors=["json_object"],
-                verbose=verbose,
-            )
+        # Invoke inference service
+        return inference_engine.chat(
+            messages=prompts,
+            response_format=DOMAIN_TYPE_SCHEMA,
+            postprocessors=["json_object"],
+            verbose=verbose,
+        )
 
     def generate_policy_rules(
         self,
-        guardian_config: dict,
+        guardian_config,
         dataset: AbstractDataset,
         local_expl: str='lime',
         results_folder:str='results/'
     ):
         """Determine the policy.
-        Args:
-
-        Returns:
-
+=======
+        guardian_config: Dict,
+        dataset_config: Dict,
+        guardian_judge: InferenceEngine,
+        inference_engine: InferenceEngine,
+        results_path: Path = Path("results"),
+        datasets_path: Path = Path("datasets"),
+    ) -> List:
         """
 
         # guardian model
@@ -1436,4 +1453,3 @@ class RiskAtlasNexus:
         # Run pipeline
         expl = pipeline.run(dataset, results_path= Path(results_folder))
         return expl
-

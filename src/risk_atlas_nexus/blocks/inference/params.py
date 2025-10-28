@@ -148,7 +148,9 @@ class TextGenerationInferenceOutput:
 
         input_text (str): input to the model.
 
-        model_name (str): the model_name as kept in the InferenceEngine.
+        logprobs (Dict[str, float]): Dict of prediction token to its Log probability
+
+        model_name_or_path (str): the model_name_or_path as kept in the InferenceEngine.
 
         inference_engine (str): The label stating the type of the InferenceEngine.
     """
@@ -159,6 +161,7 @@ class TextGenerationInferenceOutput:
     stop_reason: Optional[str] = None
     seed: Optional[int] = None
     input_text: Optional[str] = None
+    logprobs: Optional[Dict[str, float]] = None
     model_name_or_path: Optional[str] = None
     inference_engine: Optional[str] = None
 
