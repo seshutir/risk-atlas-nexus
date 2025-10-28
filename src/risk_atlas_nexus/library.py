@@ -8,6 +8,13 @@ import yaml
 from jinja2 import Template
 from linkml_runtime import SchemaView
 from linkml_runtime.dumpers import YAMLDumper
+from risk_policy_distillation.datasets.abs_dataset import AbstractDataset
+from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
+from risk_policy_distillation.models.explainers.local_explainers.shap_vals import SHAP
+from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
+from risk_policy_distillation.pipeline.clusterer import Clusterer
+from risk_policy_distillation.pipeline.concept_extractor import Extractor
+from risk_policy_distillation.pipeline.pipeline import Pipeline
 from sssom_schema import Mapping
 
 
@@ -26,7 +33,7 @@ from risk_atlas_nexus.ai_risk_ontology.datamodel.ai_risk_ontology import (
     RiskIncident,
     RiskTaxonomy,
 )
-from risk_atlas_nexus.blocks.inference import InferenceEngine
+from risk_atlas_nexus.blocks.inference import InferenceEngine, RITSInferenceEngine
 from risk_atlas_nexus.blocks.prompt_builder import (
     FewShotPromptBuilder,
     ZeroShotPromptBuilder,
@@ -49,18 +56,6 @@ from risk_atlas_nexus.metadata_base import MappingMethod
 from risk_atlas_nexus.toolkit.data_utils import load_yamls_to_container
 from risk_atlas_nexus.toolkit.error_utils import type_check, value_check
 from risk_atlas_nexus.toolkit.logging import configure_logger
-
-
-from policy_distillation.pipeline.clusterer import Clusterer
-from policy_distillation.pipeline.concept_extractor import Extractor
-from policy_distillation.pipeline.pipeline import Pipeline
-from policy_distillation.models.explainers.local_explainers.lime import LIME
-from policy_distillation.utils.data_util import load_ds
-from policy_distillation.models.guardians.rits_guardian import RITSGuardian
-from policy_distillation.models.guardians.granite_guardian_batch import GGRits
-from policy_distillation.llms.rits_component import RITSComponent
-from policy_distillation.datasets.prompt_dataset import PromptDataset
-from policy_distillation.datasets.prompt_response_dataset import PromptResponseDataset
 
 
 logger = configure_logger(__name__)
@@ -1392,9 +1387,10 @@ class RiskAtlasNexus:
 
     def generate_policy_rules(
         self,
-        task: str, 
-        label_names: List[str],
-        dataset_config: dict
+        guardian_config: dict,
+        dataset: AbstractDataset,
+        local_expl: str='lime',
+        results_folder:str='results/'
     ):
         """Determine the policy.
         Args:
@@ -1402,68 +1398,27 @@ class RiskAtlasNexus:
         Returns:
 
         """
-        # Create LLM as a judge 
-        # Define a guardian model and the task
-        guardian_config = {
-            "task": f"{task} detection", 
-            "criterion": f"{task}",
-            "criterion_definition": f"The message has {task} by common-sense.",
-            "labels": [0, 1],
-            "label_names": label_names,
-            "output_labels": ["No", "Yes"],
-            "rits": {
-            "model_name": "granite-guardian-3-2-5b-ris",
-            "model_served_name": "ibm-granite/granite-guardian-3.2-5b"
-            }
-        }
 
-        guardian = RITSGuardian(guardian_config['rits']['model_name'], guardian_config['rits']['model_served_name'], guardian_config, 'gg3.2:5b')
+        # guardian model
+        guardian = RITSGuardian(inference_engine=RITSInferenceEngine('ibm-granite/granite-guardian-3.3-8b',
+                                                                     {'api_key':os.getenv('RITS_API_KEY'),
+                                                                                'api_url': 'https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com'},
+                                                                     parameters={'logprobs': True,
+                                                                                 'top_logprobs': 10}),
+                                config=guardian_config)
 
-        top_level = ("general", "data", "split")
+        # llm model that is used for all steps of the pipeline
+        llm_component = RITSInferenceEngine('meta-llama/llama-3-3-70b-instruct',
+                                            {'api_key':os.getenv('RITS_API_KEY'),
+                                                       'api_url': "https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com"})
 
-        nested = {
-            "general": ("location", "dataset_name"),
-            "data": ("type", "index_col", "prompt_col", "response_col",
-                        "label_col", "flip_labels", "category_label"),
-            "split": ("split", "sample_ratio", "subset"),
-        }
-
-        required_top = ("general", "data", "split")
-
-        required_sub = {
-            "general": ("location", "dataset_name"),
-            "data": (
-                "type", "index_col", "prompt_col", "response_col",
-                "label_col", "flip_labels", "category_label"
-            ),
-            "split": ("split", "sample_ratio", "subset")
-        }
-
-
-        if not isinstance(dataset_config, dict):
-            raise TypeError(f"Expected a dict, got {type(cfg).__name__}")
-
-
-        for top in required_top:
-            if top not in dataset_config:
-                raise KeyError(f"Missing top‑level key: {top!r}")
-
-            sub_cfg = dataset_config[top]
-            if not isinstance(sub_cfg, dict):
-                raise TypeError(f"Expected a dict at {top!r}, got {type(sub_cfg).__name__}")
-
-
-            for sub in required_sub[top]:
-                if sub not in sub_cfg:
-                    raise KeyError(f"Missing required key: {top}.{sub!r}")
-
-
-        # Wrap the dataframe 
-        dataset = PromptResponseDataset(dataset_config)
-
-
-        llm_component = RITSComponent('llama-3-3-70b-instruct', 'meta-llama/llama-3-3-70b-instruct')
-        local_explainer = LIME(dataset_config['general']['dataset_name'], guardian_config['label_names'], n_samples=100)
+        # local explanation model -- only LIME and SHAP are supported
+        if local_expl == 'lime':
+            local_explainer = LIME(dataset.dataset_name, guardian_config['label_names'], n_samples=100)
+        elif local_expl == 'shap':
+            local_explainer = SHAP(dataset.dataset_name, guardian_config['label_names'], n_samples=100)
+        else:
+            raise ValueError('Only lime and shap are supported')
 
         # Create pipeline
         pipeline = Pipeline(extractor = Extractor(guardian, 
@@ -1479,6 +1434,6 @@ class RiskAtlasNexus:
                         fr=True)
         
         # Run pipeline
-        expl = pipeline.run(dataset, path='results/')
+        expl = pipeline.run(dataset, results_path= Path(results_folder))
         return expl
 
