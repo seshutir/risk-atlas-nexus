@@ -1,8 +1,13 @@
 import json
 import os
+
+
+# workaround for txtai
+os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
+os.environ["OMP_NUM_THREADS"] = "1"
 from importlib.metadata import version
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 import yaml
 from jinja2 import Template
@@ -11,30 +16,11 @@ from linkml_runtime.dumpers import YAMLDumper
 from risk_policy_distillation.datasets.abs_dataset import AbstractDataset
 from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
 from risk_policy_distillation.models.explainers.local_explainers.shap_vals import SHAP
-from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
+from risk_policy_distillation.models.guardians.guardian import Guardian
 from risk_policy_distillation.pipeline.clusterer import Clusterer
 from risk_policy_distillation.pipeline.concept_extractor import Extractor
 from risk_policy_distillation.pipeline.pipeline import Pipeline
 from sssom_schema import Mapping
-
-
-# workaround for txtai
-os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
-os.environ["OMP_NUM_THREADS"] = "1"
-
-from risk_policy_distillation.datasets.prompt_dataset import PromptDataset
-from risk_policy_distillation.datasets.prompt_response_dataset import (
-    PromptResponseDataset,
-)
-from risk_policy_distillation.evaluation.evaluate import Evaluator
-from risk_policy_distillation.llms.rits_component import RITSComponent
-from risk_policy_distillation.models.explainers.local_explainers.lime import LIME
-from risk_policy_distillation.models.guardians.granite_guardian_batch import GGRits
-from risk_policy_distillation.models.guardians.rits_guardian import RITSGuardian
-from risk_policy_distillation.pipeline.clusterer import Clusterer
-from risk_policy_distillation.pipeline.concept_extractor import Extractor
-from risk_policy_distillation.pipeline.pipeline import Pipeline
-from risk_policy_distillation.utils.data_util import load_ds
 
 from risk_atlas_nexus.ai_risk_ontology.datamodel.ai_risk_ontology import (
     Action,
@@ -1402,54 +1388,62 @@ class RiskAtlasNexus:
         self,
         guardian_config,
         dataset: AbstractDataset,
-        local_expl: str='lime',
-        results_folder:str='results/'
-    ):
-        """Determine the policy.
-=======
-        guardian_config: Dict,
-        dataset_config: Dict,
         guardian_judge: InferenceEngine,
-        inference_engine: InferenceEngine,
+        llm_component: InferenceEngine,
+        local_expl: Literal["LIME", "SHAP"] = "LIME",
         results_path: Path = Path("results"),
-        datasets_path: Path = Path("datasets"),
-    ) -> List:
+    ):
+        """Generate the policy rules.
+
+        Args:
+            guardian_config (Dict): guardian connfig,
+            dataset (AbstractDataset): Dataset to be used for running the pipeline,
+            guardian_judge (InferenceEngine): An LLM inference engine instance of the Granite Guardian,
+            llm_component (InferenceEngine): An LLM inference engine instance for all steps of the policy distillation pipeline
+            local_expl (Literal[&quot;LIME&quot;, &quot;SHAP&quot;], optional): local explanation model -- only LIME and SHAP are supported. Defaults to "LIME".
+            results_path (Path, optional): Output directory path. Defaults to Path("results").
+
+        Returns:
+            List: A list of policy rules
         """
 
-        # guardian model
-        guardian = RITSGuardian(inference_engine=RITSInferenceEngine('ibm-granite/granite-guardian-3.3-8b',
-                                                                     {'api_key':os.getenv('RITS_API_KEY'),
-                                                                                'api_url': 'https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com'},
-                                                                     parameters={'logprobs': True,
-                                                                                 'top_logprobs': 10}),
-                                config=guardian_config)
-
-        # llm model that is used for all steps of the pipeline
-        llm_component = RITSInferenceEngine('meta-llama/llama-3-3-70b-instruct',
-                                            {'api_key':os.getenv('RITS_API_KEY'),
-                                                       'api_url': "https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com"})
+        # Create an instance of the guardian model
+        guardian = Guardian(
+            inference_engine=guardian_judge,
+            config=guardian_config,
+        )
 
         # local explanation model -- only LIME and SHAP are supported
-        if local_expl == 'lime':
-            local_explainer = LIME(dataset.dataset_name, guardian_config['label_names'], n_samples=100)
-        elif local_expl == 'shap':
-            local_explainer = SHAP(dataset.dataset_name, guardian_config['label_names'], n_samples=100)
+        if local_expl == "LIME":
+            local_explainer = LIME(
+                dataset.dataset_name, guardian_config["label_names"], n_samples=100
+            )
+        elif local_expl == "SHAP":
+            local_explainer = SHAP(
+                dataset.dataset_name, guardian_config["label_names"], n_samples=100
+            )
         else:
-            raise ValueError('Only lime and shap are supported')
+            raise ValueError("Only LIME and SHAP are supported")
 
         # Create pipeline
-        pipeline = Pipeline(extractor = Extractor(guardian, 
-                                            llm_component, 
-                                            guardian_config['criterion'], 
-                                            guardian_config['criterion_definition'], 
-                                            local_explainer),
-                        clusterer = Clusterer(llm_component,
-                                            guardian_config['criterion_definition'],
-                                            guardian_config['label_names'], 
-                                            n_iter=10),
-                        lime=True, 
-                        fr=True)
-        
+        pipeline = Pipeline(
+            extractor=Extractor(
+                guardian,
+                llm_component,
+                guardian_config["criterion"],
+                guardian_config["criterion_definition"],
+                local_explainer,
+            ),
+            clusterer=Clusterer(
+                llm_component,
+                guardian_config["criterion_definition"],
+                guardian_config["label_names"],
+                n_iter=10,
+            ),
+            lime=True,
+            fr=True,
+        )
+
         # Run pipeline
-        expl = pipeline.run(dataset, results_path= Path(results_folder))
+        expl = pipeline.run(dataset, results_path=results_path)
         return expl
